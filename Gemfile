@@ -39,7 +39,7 @@ gem "timescaledb"
 
 group :production do
   # Use Redis for Action Cable
-  gem "redis", "~> 5.0"
+  gem "redis", "~> 6.0"
   # AWS S3 for Active Storage
   gem "aws-sdk-s3", require: false
 
