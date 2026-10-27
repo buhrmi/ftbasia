@@ -1,0 +1,11 @@
+:root {
+  color: white;
+  background-color: black;
+}
+
+body {
+  width: 100%;
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}

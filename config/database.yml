@@ -1,0 +1,24 @@
+# PostgreSQL for all environments.
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: shitcoinswap_development
+
+test:
+  <<: *default
+  database: shitcoinswap_test
+  # The concurrency tests (test/models/order_concurrency_test.rb) drive several
+  # real connections at once on purpose; the default of 5 is not enough.
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 16 } %>
+
+# Single database for everything, provided by DATABASE_URL (see config/deploy.yml).
+# Solid Queue and Solid Cache live in it too: their tables come from the regular
+# migrations in db/migrate, so there are no separate cache/queue databases.
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
