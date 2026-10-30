@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+  meta:
+    locale: en_US
+  articles:
+    index_title: "Articles — Follow The Bass"
+    index_description: "Interviews, announcements and stories from Follow The Bass."

@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root to: redirect("/ja/articles")
 
-  inertia "/" => "shows/index"
+  scope "(:locale)", locale: /en|ja/ do
+    get "articles", to: "articles#index", as: :articles
+    get "articles/:slug", to: "articles#show", as: :article, constraints: { slug: /[a-z0-9-]+/ }
+  end
 end
