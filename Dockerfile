@@ -9,13 +9,16 @@ WORKDIR /rails
 # Copy Bun runtime binary into base so it is available in all stages
 COPY --from=oven/bun:1 /usr/local/bin/bun /usr/local/bin/bun
 
-# Install base runtime dependencies
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+# Disable Debian's default auto-cleaning so apt packages persist in the cache mount
+RUN rm -f /etc/apt/apt.conf.d/docker-clean && \
+    echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
+
+# Install base runtime dependencies using explicit cache mount IDs
+RUN --mount=type=cache,id=s/0729c8fd-e63c-4026-8570-3b955e207347-/var/cache/apt,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,id=s/0729c8fd-e63c-4026-8570-3b955e207347-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     apt-get update -qq && \
     apt-get install --no-install-recommends -y curl ffmpeg libpq5 libjemalloc2 libvips && \
-    ln -s /usr/lib/$(uname -m)-linux-gnu/libjemalloc.so.2 /usr/local/lib/libjemalloc.so && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    ln -s /usr/lib/$(uname -m)-linux-gnu/libjemalloc.so.2 /usr/local/lib/libjemalloc.so
 
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
@@ -32,11 +35,10 @@ RUN curl -fsSL https://github.com/DarthSim/hivemind/releases/download/v1.1.0/hiv
 
 # --- STAGE 2: Common Build Environment (Deduplicates Apt Installs) ---
 FROM base AS build-base
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+RUN --mount=type=cache,id=s/0729c8fd-e63c-4026-8570-3b955e207347-/var/cache/apt,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,id=s/0729c8fd-e63c-4026-8570-3b955e207347-/var/lib/apt,target=/var/lib/apt,sharing=locked \
     apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips libyaml-dev pkg-config && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips libyaml-dev pkg-config
 
 
 # --- STAGE 3: Install Ruby Gems ---
@@ -45,7 +47,7 @@ FROM build-base AS gems-builder
 COPY --link vendor* ./vendor/
 COPY --link Gemfile Gemfile.lock ./
 
-RUN --mount=type=cache,target=/root/.bundle/cache,sharing=locked \
+RUN --mount=type=cache,id=s/0729c8fd-e63c-4026-8570-3b955e207347-/root/.bundle/cache,target=/root/.bundle/cache,sharing=locked \
     bundle install && \
     rm -rf "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     find "${BUNDLE_PATH}"/ruby/*/gems/ -name "*.o" -o -name "*.c" -delete && \
@@ -56,8 +58,8 @@ RUN --mount=type=cache,target=/root/.bundle/cache,sharing=locked \
 FROM base AS assets-builder
 COPY --link package.json bun.lock ./
 # Workspace manifests must be present before install, or bun cannot resolve workspace:*
-COPY --link packages/inertiax-viewstack/package.json ./packages/inertiax-viewstack/package.json
-RUN --mount=type=cache,target=/root/.bun,sharing=locked \
+#COPY --link packages/inertiax-viewstack/package.json ./packages/inertiax-viewstack/package.json
+RUN --mount=type=cache,id=s/0729c8fd-e63c-4026-8570-3b955e207347-/root/.bun/install/cache,target=/root/.bun/install/cache,sharing=locked \
     bun install --frozen-lockfile
 
 COPY --link . .
