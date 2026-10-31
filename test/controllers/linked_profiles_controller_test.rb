@@ -55,6 +55,8 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Tokyo · Da Nang", profile["location"]
     assert_includes profile["bio"], "New Sound For Japan"
     assert_equal 6, profile["interview"].length
+    assert_equal "/en/shows/far-too-loud", profile["interview"].first["link"]["url"]
+    assert_equal "/en/shows/far-too-loud", profile["interview"][3]["link"]["url"]
     assert_equal [ "tiktok", "video", "image" ], profile["media"].map { |item| item["kind"] }
     assert_equal "7610814398847847687", profile["media"].first["video_id"]
     assert_equal "stefan_illeffects.mp4", profile["media"][1]["asset"]
@@ -68,6 +70,8 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "東京・ダナン", profile["location"]
     assert_equal 6, profile["interview"].length
     assert_includes profile["interview"].first["question"], "New Sound For Japan"
+    assert_equal "/shows/far-too-loud", profile["interview"].first["link"]["url"]
+    assert_equal "/shows/far-too-loud", profile["interview"][3]["link"]["url"]
   end
 
   test "event page links to tagged news" do
@@ -78,6 +82,27 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Beginning Tokyo", inertia_props["profile"]["name"]
     assert_equal [ "/en/news/stefan-opens-up-after-8-years-in-tokyo" ],
       inertia_props["news"].map { |item| item["url"] }
+  end
+
+  test "event page lists its shows with details and flyer" do
+    get event_path(locale: :ja, slug: "tokyo-bass-conference")
+
+    assert_response :success
+    assert_inertia_component "events/show"
+    assert_equal "Tokyo Bass Conference", inertia_props["profile"]["name"]
+
+    shows = inertia_props["shows"]
+    assert_equal 1, shows.length
+
+    show = shows.first
+    assert_equal "far-too-loud", show["slug"]
+    assert_equal "Tokyo Bass Conference feat. Far Too Loud", show["name"]
+    assert_equal "共同企画", show["kind"]
+    assert_equal 2016, show["year"]
+    assert_equal "東京", show["location"]
+    assert_equal [ "Far Too Loud" ], show["performers"]
+    assert_equal "ブッキング", show["work"].first["title"]
+    assert_equal "2016-far-too-loud.jpg", show["flyer"]
   end
 
   test "unknown artist and event pages return not found" do

@@ -86,7 +86,16 @@ class Profile
         raise ArgumentError, "Invalid interview entry in profile #{slug}"
       end
 
-      { question: entry["question"].to_s, answer: entry["answer"].to_s }
+      result = { question: entry["question"].to_s, answer: entry["answer"].to_s }
+      if entry["link"]
+        link = entry["link"]
+        unless link.is_a?(Hash) && link["label"].present? && link["url"].present?
+          raise ArgumentError, "Invalid interview link in profile #{slug}"
+        end
+
+        result[:link] = { label: link["label"].to_s, url: link["url"].to_s }
+      end
+      result
     end
   end
 

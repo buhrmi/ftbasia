@@ -58,6 +58,14 @@
           </p>
           <h3 class="mt-2 font-medium">{entry.question}</h3>
           <p class="mt-3 text-sm leading-7 text-neutral-400">{entry.answer}</p>
+          {#if entry.link}
+            <a
+              href={entry.link.url}
+              class="mt-2 inline-flex text-sm text-neutral-300 underline underline-offset-4 hover:text-white"
+            >
+              {entry.link.label} →
+            </a>
+          {/if}
         </li>
       {/each}
     </ol>

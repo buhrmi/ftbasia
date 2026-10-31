@@ -17,5 +17,6 @@ Rails.application.routes.draw do
     get "news/:slug", to: "news#show", as: :news, constraints: { slug: /[a-z0-9-]+/ }
     get "artists/:slug", to: "artists#show", as: :artist, constraints: { slug: /[a-z0-9-]+/ }
     get "events/:slug", to: "events#show", as: :event, constraints: { slug: /[a-z0-9-]+/ }
+    get "shows/:slug", to: "shows#show", as: :show, constraints: { slug: /[a-z0-9-]+/ }
   end
 end

@@ -38,7 +38,7 @@ The biggest reason I started Follow The Bass is to restore the "Honor" and genui
 **Stefan:**
 It concerns the launch of the Tokyo-based event brand "Beginning" (Instagram: `@beginningtokyo`).
 
-If you scroll all the way back to the very beginning of their Instagram account, the names of notable artists credited early on include **Siren** and **Far Too Loud**. But there is a truth the public does not know. The person who contacted those international artists directly, negotiated their appearances, and paid their fees out of his own pocket to make those bookings happen was none other than me, Stefan.
+If you scroll all the way back to the very beginning of their Instagram account, the names of notable artists credited early on include **Siren** and [**Far Too Loud**](/en/shows/far-too-loud). But there is a truth the public does not know. The person who contacted those international artists directly, negotiated their appearances, and paid their fees out of his own pocket to make those bookings happen was none other than me, Stefan.
 
 The reason the Beginning brand got off the ground and became known in the scene was the artist lineup I provided with my own money and passion. But once the events began to gain momentum, the organizers refused to acknowledge my contribution at all — not even a word of thanks — and betrayed me by pushing me out as if I had never existed.
 
