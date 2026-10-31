@@ -46,6 +46,45 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
       "https://thaboogiebandit.com/bio"
   end
 
+  test "YELLOCK's profile exposes a researched biography" do
+    get artist_path(locale: :ja, slug: "yellock")
+
+    assert_response :success
+    profile = inertia_props["profile"]
+    assert_equal "YELLOCK", profile["name"]
+    assert_includes profile["role"], "バーチャルヒューマン"
+    assert_includes profile["bio"], "06S"
+    assert_includes profile["links"].map { |link| link["url"] }, "https://yellock.jp/"
+    assert_includes profile["sources"].map { |source| source["url"] },
+      "https://prtimes.jp/main/html/rd/p/000000012.000053231.html"
+
+    get artist_path(locale: :en, slug: "yellock")
+
+    assert_response :success
+    profile = inertia_props["profile"]
+    assert_includes profile["role"], "Virtual human artist"
+    assert_includes profile["bio"], "drum'n'bass"
+  end
+
+  test "DJ Aki's profile exposes a researched biography" do
+    get artist_path(locale: :ja, slug: "dj-aki")
+
+    assert_response :success
+    profile = inertia_props["profile"]
+    assert_equal "DJ AKi", profile["name"]
+    assert_includes profile["role"], "06S"
+    assert_includes profile["bio"], "06S"
+    assert_includes profile["links"].map { |link| link["url"] }, "https://x.com/DJAKi"
+    assert_includes profile["sources"].map { |source| source["url"] }, "https://zaiko.io/en/artist/9005"
+
+    get artist_path(locale: :en, slug: "dj-aki")
+
+    assert_response :success
+    profile = inertia_props["profile"]
+    assert_includes profile["role"], "06S"
+    assert_includes profile["bio"], "WOMB's longest-running"
+  end
+
   test "Stefan's page exposes localized interview details and media gallery" do
     get artist_path(locale: :en, slug: "stefan")
 

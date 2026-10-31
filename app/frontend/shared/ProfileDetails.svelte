@@ -31,7 +31,7 @@
   <p class="mt-4 text-sm text-neutral-500">{profile.tagline}</p>
 {/if}
 {#if profile.bio}
-  <p class="mt-4 max-w-3xl leading-relaxed text-neutral-300">{profile.bio}</p>
+  <p class="mt-4 max-w-3xl whitespace-pre-line leading-relaxed text-neutral-300">{profile.bio}</p>
 {/if}
 {#if profile.links?.length}
   <section class="mt-8">

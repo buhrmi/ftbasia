@@ -68,6 +68,23 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "renders the Domination bootleg news item with artist tags" do
+    %i[en ja].each do |locale|
+      get news_path(locale:, slug: "dj-aki-and-yellock-bootleg-domination")
+
+      assert_response :success
+      assert_inertia_component "news/show"
+      assert_equal locale.to_s, inertia_props["locale"]
+      assert_equal "2026-10-31", inertia_props["news"]["published_at"]
+      assert_equal [
+        { "type" => "artist", "slug" => "dj-aki", "name" => "DJ AKi",
+          "url" => locale == :ja ? "/artists/dj-aki" : "/en/artists/dj-aki" },
+        { "type" => "artist", "slug" => "yellock", "name" => "YELLOCK",
+          "url" => locale == :ja ? "/artists/yellock" : "/en/artists/yellock" }
+      ], inertia_props["news"]["tags"]
+    end
+  end
+
   test "returns not found for unknown news items" do
     get news_path(slug: "does-not-exist")
 
