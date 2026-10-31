@@ -6,7 +6,8 @@
   let { locale, slug, news, news_url, meta } = $props();
 
   const Content = $derived(newsComponent(locale, slug));
-  const imageUrl = $derived(absoluteUrl(newsImage(slug, locale), meta.origin));
+  const preview = $derived(newsImage(slug, locale));
+  const imageUrl = $derived(absoluteUrl(preview, meta.origin));
 </script>
 
 <svelte:head>
@@ -16,31 +17,61 @@
   {/if}
 </svelte:head>
 
-<nav class="mb-10">
-  <Link href={news_url} class="text-sm text-neutral-400 hover:text-white">
-    ← News
-  </Link>
-</nav>
-
-{#if Content}
-  <article class="news">
-    <header class="news-header">
-      <time
-        datetime={news.published_at}
-        class="text-[11px] tracking-[0.25em] text-neutral-500 uppercase"
-      >
-        {formatNewsDate(news.published_at, locale)}
-      </time>
-      <h1>{news.title}</h1>
-      <EntityTags tags={news.tags} {locale} />
-    </header>
-    <div class="news-content">
-      <Content />
+<div class="news-page">
+  {#if preview}
+    <div class="news-backdrop" aria-hidden="true">
+      <img src={preview} alt="" />
     </div>
-  </article>
-{/if}
+  {/if}
+
+  <nav class="mb-10">
+    <Link href={news_url} class="text-sm text-neutral-400 hover:text-white">
+      ← News
+    </Link>
+  </nav>
+
+  {#if Content}
+    <article class="news">
+      <header class="news-header">
+        <time
+          datetime={news.published_at}
+          class="text-[11px] tracking-[0.25em] text-neutral-500 uppercase"
+        >
+          {formatNewsDate(news.published_at, locale)}
+        </time>
+        <h1>{news.title}</h1>
+        <EntityTags tags={news.tags} {locale} />
+      </header>
+      <div class="news-content">
+        <Content />
+      </div>
+    </article>
+  {/if}
+</div>
 
 <style>
+  .news-page {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .news-backdrop {
+    position: fixed;
+    inset: -4rem;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .news-backdrop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(14px) brightness(0.2);
+    transform: scale(1);
+  }
+
+
   .news-header {
     margin-bottom: 1.5rem;
   }
