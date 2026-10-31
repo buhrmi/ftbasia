@@ -2,13 +2,25 @@ require "test_helper"
 
 class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
   test "artist page links to tagged news" do
-    get artist_path(locale: :ja, slug: "stefan")
+    get artist_path(locale: :en, slug: "stefan")
 
     assert_response :success
     assert_inertia_component "artists/show"
     assert_equal "Stefan", inertia_props["profile"]["name"]
-    assert_equal [ "/ja/news/stefan-explains-why-he-is-starting-follow-the-bass" ],
+    assert_equal [ "/news/stefan-explains-why-he-is-starting-follow-the-bass" ],
       inertia_props["news"].map { |item| item["url"] }
+  end
+
+  test "artist page prefers the current locale when tagged news has a translation" do
+    slug = "allen-mock-and-tha-boogie-bandit-debut-on-ophelia-records-with-sirius"
+
+    get artist_path(locale: :en, slug: "allen-mock")
+    assert_response :success
+    assert_equal [ "/news/#{slug}" ], inertia_props["news"].map { |item| item["url"] }
+
+    get artist_path(locale: :ja, slug: "allen-mock")
+    assert_response :success
+    assert_equal [ "/ja/news/#{slug}" ], inertia_props["news"].map { |item| item["url"] }
   end
 
   test "researched artist pages expose localized bios, links, and sources" do
@@ -59,12 +71,12 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "event page links to tagged news" do
-    get event_path(locale: :ja, slug: "beginning-tokyo")
+    get event_path(locale: :en, slug: "beginning-tokyo")
 
     assert_response :success
     assert_inertia_component "events/show"
     assert_equal "Beginning Tokyo", inertia_props["profile"]["name"]
-    assert_equal [ "/ja/news/stefan-explains-why-he-is-starting-follow-the-bass" ],
+    assert_equal [ "/news/stefan-explains-why-he-is-starting-follow-the-bass" ],
       inertia_props["news"].map { |item| item["url"] }
   end
 

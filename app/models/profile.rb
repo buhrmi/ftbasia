@@ -65,7 +65,7 @@ class Profile
   end
 
   def tagged_news(locale:)
-    News.all(locale:).select { |item| item.tagged?(self.class::TAG_TYPE, slug) }
+    News.all_for_index(locale:).select { |item| item.tagged?(self.class::TAG_TYPE, slug) }
   end
 
   private

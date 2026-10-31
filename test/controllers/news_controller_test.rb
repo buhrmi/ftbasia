@@ -31,20 +31,20 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "website", inertia_props["meta"]["og_type"]
   end
 
-  test "news index includes untranslated items and prefers the selected locale when available" do
+  test "news index prefers the selected locale when available" do
     get news_index_path(locale: :en)
 
     assert_response :success
     news = inertia_props["news"]
     slugs = news.map { |item| item["slug"] }
 
-    assert_includes slugs, "stefan-explains-why-he-is-starting-follow-the-bass"
+    stefan_slug = "stefan-explains-why-he-is-starting-follow-the-bass"
     sirius_slug = "allen-mock-and-tha-boogie-bandit-debut-on-ophelia-records-with-sirius"
+    assert_equal 1, slugs.count(stefan_slug)
     assert_equal 1, slugs.count(sirius_slug)
-    assert_equal "/ja/news/stefan-explains-why-he-is-starting-follow-the-bass",
-      news.find { |item| item["slug"] == "stefan-explains-why-he-is-starting-follow-the-bass" }["url"]
-    assert_equal "/news/#{sirius_slug}",
-      news.find { |item| item["slug"] == sirius_slug }["url"]
+    assert_equal "/news/#{stefan_slug}", news.find { |item| item["slug"] == stefan_slug }["url"]
+    assert_equal "/news/#{sirius_slug}", news.find { |item| item["slug"] == sirius_slug }["url"]
+    assert_equal "en", news.find { |item| item["slug"] == stefan_slug }["locale"]
   end
 
   test "renders the Sirius release with artist tags and publication date" do
@@ -80,10 +80,14 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to "/ja/news"
   end
 
-  test "returns not found for locales the news item does not exist in" do
+  test "renders the English translation of a news item" do
     get news_path(locale: :en, slug: "stefan-explains-why-he-is-starting-follow-the-bass")
 
-    assert_response :not_found
+    assert_response :success
+    assert_inertia_component "news/show"
+    assert_equal "en", inertia_props["locale"]
+    assert_equal "en", inertia_props["news"]["locale"]
+    assert_match(/opens up about his experience/, inertia_props["news"]["title"])
   end
 
   test "passes social preview metadata" do
