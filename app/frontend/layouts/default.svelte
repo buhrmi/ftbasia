@@ -1,19 +1,16 @@
 <script>
   import Footer from "~/shared/Footer.svelte";
   import logo from "~/assets/logo.png";
-  import { page } from "inertiax-svelte";
 
   const {
-    children
+    children,
+    meta
   } = $props()
 
   const SITE_NAME = "Follow The Bass";
-  const ARTISTS_URL = "https://followthebass.asia/artists";
 
-  const meta = $derived(page.props);
   const title = $derived(meta.title || "Bass music promotion in Tokyo and beyond since 2014");
   const description = $derived(meta.description);
-  const artistsLabel = $derived(meta.locale === "ja" ? "アーティストの方へ" : "For artists");
 </script>
 
 <svelte:head>
@@ -46,23 +43,60 @@
   {/if}
 </svelte:head>
 
-<header class="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 py-6">
-  <div class="flex items-center gap-4">
-    <img src={logo} alt={SITE_NAME} class="h-10 w-10 shrink-0 object-contain" />
-    <p class="max-w-56 text-xs leading-relaxed text-neutral-400">
-      Bass music promotion in Tokyo and beyond since 2014
-    </p>
-  </div>
+<header class="site-header">
   <a
-    href={ARTISTS_URL}
-    target="_blank"
-    rel="noreferrer"
-    class="inline-flex items-center rounded-full border border-white/20 px-4 py-2 text-xs text-neutral-300 transition-colors hover:border-white/40 hover:text-white"
+    class="site-header-link"
+    href={meta.locale === "en" ? "/en/news" : "/ja/news"}
+    aria-label={`${SITE_NAME} news index`}
   >
-    {artistsLabel}
+    <div class="site-header-inner">
+      <div class="flex items-center gap-4">
+        <img src={logo} alt="" class="h-10 w-10 shrink-0 object-contain" />
+        <p class="max-w-56 text-xs leading-relaxed text-neutral-400">
+          Bass music promotion in Tokyo and beyond since 2014
+        </p>
+      </div>
+    </div>
   </a>
 </header>
 
 {@render children()}
 
 <Footer />
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+    background: rgb(0 0 0 / 95%);
+    backdrop-filter: blur(12px);
+    margin-bottom: 12px;
+  }
+
+  .site-header-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .site-header-link:focus-visible {
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+
+  .site-header-inner {
+    display: flex;
+    width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+</style>

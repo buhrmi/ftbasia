@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root to: redirect("/ja/articles")
+  root to: redirect("/ja/news")
 
   scope "(:locale)", locale: /en|ja/ do
-    get "articles", to: "articles#index", as: :articles
-    get "articles/:slug", to: "articles#show", as: :article, constraints: { slug: /[a-z0-9-]+/ }
+    get "news", to: "news#index", as: :news_index
+    get "news/:slug", to: "news#show", as: :news, constraints: { slug: /[a-z0-9-]+/ }
+    get "artists/:slug", to: "artists#show", as: :artist, constraints: { slug: /[a-z0-9-]+/ }
+    get "events/:slug", to: "events#show", as: :event, constraints: { slug: /[a-z0-9-]+/ }
   end
 end

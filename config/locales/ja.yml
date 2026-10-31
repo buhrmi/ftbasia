@@ -1,6 +1,6 @@
 ja:
   meta:
     locale: ja_JP
-  articles:
-    index_title: "記事一覧 — Follow The Bass"
+  news:
+    index_title: "ニュース — Follow The Bass"
     index_description: "Follow The Bassのインタビュー、お知らせ、ストーリー。"

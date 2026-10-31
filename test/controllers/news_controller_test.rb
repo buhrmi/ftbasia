@@ -1,0 +1,111 @@
+require "test_helper"
+
+class NewsControllerTest < ActionDispatch::IntegrationTest
+  test "renders a news item for the requested locale" do
+    get news_path(locale: :ja, slug: "stefan-explains-why-he-is-starting-follow-the-bass")
+
+    assert_response :success
+    assert_inertia_component "news/show"
+    assert_equal "ja", inertia_props["locale"]
+    assert_equal [
+      { "type" => "artist", "slug" => "stefan", "name" => "Stefan", "url" => "/ja/artists/stefan" },
+      {
+        "type" => "event",
+        "slug" => "beginning-tokyo",
+        "name" => "Beginning Tokyo",
+        "url" => "/ja/events/beginning-tokyo"
+      }
+    ], inertia_props["news"]["tags"]
+  end
+
+  test "renders the news index" do
+    get news_index_path(locale: :ja)
+
+    assert_response :success
+    assert_inertia_component "news/index"
+    sirius_slug = "allen-mock-and-tha-boogie-bandit-debut-on-ophelia-records-with-sirius"
+    assert_includes inertia_props["news"].map { |item| item["slug"] }, sirius_slug
+    sirius = inertia_props["news"].find { |item| item["slug"] == sirius_slug }
+    assert_equal "/ja/news/#{sirius_slug}", sirius["url"]
+    assert_equal "http://www.example.com/ja/news", inertia_props["meta"]["canonical_url"]
+    assert_equal "website", inertia_props["meta"]["og_type"]
+  end
+
+  test "news index includes untranslated items and prefers the selected locale when available" do
+    get news_index_path(locale: :en)
+
+    assert_response :success
+    news = inertia_props["news"]
+    slugs = news.map { |item| item["slug"] }
+
+    assert_includes slugs, "stefan-explains-why-he-is-starting-follow-the-bass"
+    sirius_slug = "allen-mock-and-tha-boogie-bandit-debut-on-ophelia-records-with-sirius"
+    assert_equal 1, slugs.count(sirius_slug)
+    assert_equal "/ja/news/stefan-explains-why-he-is-starting-follow-the-bass",
+      news.find { |item| item["slug"] == "stefan-explains-why-he-is-starting-follow-the-bass" }["url"]
+    assert_equal "/news/#{sirius_slug}",
+      news.find { |item| item["slug"] == sirius_slug }["url"]
+  end
+
+  test "renders the Sirius release with artist tags and publication date" do
+    %i[en ja].each do |locale|
+      get news_path(locale:, slug: "allen-mock-and-tha-boogie-bandit-debut-on-ophelia-records-with-sirius")
+
+      assert_response :success
+      assert_inertia_component "news/show"
+      assert_equal locale.to_s, inertia_props["locale"]
+      assert_equal "2022-08-19", inertia_props["news"]["published_at"]
+      assert_equal [
+        { "type" => "artist", "slug" => "allen-mock", "name" => "Allen Mock",
+          "url" => locale == :ja ? "/ja/artists/allen-mock" : "/artists/allen-mock" },
+        {
+          "type" => "artist",
+          "slug" => "tha-boogie-bandit",
+          "name" => "Tha Boogie Bandit",
+          "url" => locale == :ja ? "/ja/artists/tha-boogie-bandit" : "/artists/tha-boogie-bandit"
+        }
+      ], inertia_props["news"]["tags"]
+    end
+  end
+
+  test "returns not found for unknown news items" do
+    get news_path(slug: "does-not-exist")
+
+    assert_response :not_found
+  end
+
+  test "redirects the root path to the Japanese news index" do
+    get "/"
+
+    assert_redirected_to "/ja/news"
+  end
+
+  test "returns not found for locales the news item does not exist in" do
+    get news_path(locale: :en, slug: "stefan-explains-why-he-is-starting-follow-the-bass")
+
+    assert_response :not_found
+  end
+
+  test "passes social preview metadata" do
+    get news_path(locale: :ja, slug: "stefan-explains-why-he-is-starting-follow-the-bass")
+
+    assert_equal "http://www.example.com", inertia_props["meta"]["origin"]
+    assert_equal "http://www.example.com/ja/news/stefan-explains-why-he-is-starting-follow-the-bass",
+      inertia_props["meta"]["canonical_url"]
+    assert_equal "article", inertia_props["meta"]["og_type"]
+    assert_equal "ja_JP", inertia_props["meta"]["og_locale"]
+    assert_equal "2026-10-30", inertia_props["meta"]["published_at"]
+    refute inertia_props["meta"].key?("image_url"), "pages render the Vite-imported og:image themselves"
+  end
+
+  private
+
+  def inertia_props
+    JSON.parse(Nokogiri::HTML(response.body).at_css("script[data-page]").text)["props"]
+  end
+
+  def assert_inertia_component(component)
+    page = JSON.parse(Nokogiri::HTML(response.body).at_css("script[data-page]").text)
+    assert_equal component, page["component"]
+  end
+end

@@ -2,9 +2,12 @@
 title: 【創業者インタビュー】Follow The Bass始動——創業者Stefanが語る、不条理を越えて目指す真の誇りと重低音シーンの未来
 description: Follow The Bass創業者Stefanが、ブランド設立の背景と「Honor（仁義・誇り）」に基づく理念、ドラムンベース／ダブステップ／トラップシーンへの想いを語ります。
 published_at: 2026-10-30
+tags:
+  - type: artist
+    slug: stefan
+  - type: event
+    slug: beginning-tokyo
 ---
-# 【創業者インタビュー】Follow The Bass始動——創業者Stefanが語る、不条理を越えて目指す真の誇りと重低音シーンの未来
-
 「Follow The Bass」の公式サイトへようこそ。
 
 日本のベースミュージックシーンに新たな風を吹き込むべく、ドラムンベース（Drum and Bass）、ダブステップ（Dubstep）、トラップ（Trap）**を軸とした新イベントブランド**「Follow The Bass」が本格始動します。
@@ -13,7 +16,7 @@ published_at: 2026-10-30
 
 ブランドの立ち上げにあたり、創業者でありオーガナイザーである**Stefan**への特別インタビュー記事を公開します。これまで裏方としてシーンを支えてきた彼が、なぜ新たなブランドを創設するに至ったのか。その裏にあった過去の不条理な体験と、Follow The Bassに込めた確固たる信念について語ります。
 
-Stefanのプロフィールやこれまでの活動については、[アーティストページ](https://followthebass.asia/artists/stefan)をご覧ください。
+Stefanのプロフィールやこれまでの活動については、[アーティストページ](/ja/artists/stefan)をご覧ください。
 
 ---
 
@@ -88,4 +91,3 @@ Follow The Bassでは、ドラムンベース、ダブステップ、トラッ�
 
 * **Instagram DM**: `@ftbasia`
 * **Email**: `hello@ftbasia.com`
-
