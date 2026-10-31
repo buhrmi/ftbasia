@@ -46,7 +46,7 @@
 <header class="site-header">
   <a
     class="site-header-link"
-    href={meta.locale === "en" ? "/en/news" : "/ja/news"}
+    href={meta.locale === "en" ? "/en/news" : "/news"}
     aria-label={`${SITE_NAME} news index`}
   >
     <div class="site-header-inner">

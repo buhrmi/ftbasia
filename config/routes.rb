@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root to: redirect("/ja/news")
+  root to: redirect("/news")
 
   scope "(:locale)", locale: /en|ja/ do
     get "news", to: "news#index", as: :news_index

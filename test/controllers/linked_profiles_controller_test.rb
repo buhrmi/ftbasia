@@ -7,7 +7,7 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_inertia_component "artists/show"
     assert_equal "Stefan", inertia_props["profile"]["name"]
-    assert_equal [ "/news/stefan-explains-why-he-is-starting-follow-the-bass" ],
+    assert_equal [ "/en/news/stefan-opens-up-after-8-years-in-tokyo" ],
       inertia_props["news"].map { |item| item["url"] }
   end
 
@@ -16,11 +16,11 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
 
     get artist_path(locale: :en, slug: "allen-mock")
     assert_response :success
-    assert_equal [ "/news/#{slug}" ], inertia_props["news"].map { |item| item["url"] }
+    assert_equal [ "/en/news/#{slug}" ], inertia_props["news"].map { |item| item["url"] }
 
     get artist_path(locale: :ja, slug: "allen-mock")
     assert_response :success
-    assert_equal [ "/ja/news/#{slug}" ], inertia_props["news"].map { |item| item["url"] }
+    assert_equal [ "/news/#{slug}" ], inertia_props["news"].map { |item| item["url"] }
   end
 
   test "researched artist pages expose localized bios, links, and sources" do
@@ -76,7 +76,7 @@ class LinkedProfilesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_inertia_component "events/show"
     assert_equal "Beginning Tokyo", inertia_props["profile"]["name"]
-    assert_equal [ "/news/stefan-explains-why-he-is-starting-follow-the-bass" ],
+    assert_equal [ "/en/news/stefan-opens-up-after-8-years-in-tokyo" ],
       inertia_props["news"].map { |item| item["url"] }
   end
 

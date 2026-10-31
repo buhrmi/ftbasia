@@ -1,33 +1,33 @@
 require "test_helper"
 
 class NewsControllerTest < ActionDispatch::IntegrationTest
-  test "renders a news item for the requested locale" do
-    get news_path(locale: :ja, slug: "stefan-explains-why-he-is-starting-follow-the-bass")
+  test "renders a news item in the default Japanese locale" do
+    get news_path(slug: "stefan-opens-up-after-8-years-in-tokyo")
 
     assert_response :success
     assert_inertia_component "news/show"
     assert_equal "ja", inertia_props["locale"]
     assert_equal [
-      { "type" => "artist", "slug" => "stefan", "name" => "Stefan", "url" => "/ja/artists/stefan" },
+      { "type" => "artist", "slug" => "stefan", "name" => "Stefan", "url" => "/artists/stefan" },
       {
         "type" => "event",
         "slug" => "beginning-tokyo",
         "name" => "Beginning Tokyo",
-        "url" => "/ja/events/beginning-tokyo"
+        "url" => "/events/beginning-tokyo"
       }
     ], inertia_props["news"]["tags"]
   end
 
   test "renders the news index" do
-    get news_index_path(locale: :ja)
+    get news_index_path
 
     assert_response :success
     assert_inertia_component "news/index"
     sirius_slug = "allen-mock-and-tha-boogie-bandit-debut-on-ophelia-records-with-sirius"
     assert_includes inertia_props["news"].map { |item| item["slug"] }, sirius_slug
     sirius = inertia_props["news"].find { |item| item["slug"] == sirius_slug }
-    assert_equal "/ja/news/#{sirius_slug}", sirius["url"]
-    assert_equal "http://www.example.com/ja/news", inertia_props["meta"]["canonical_url"]
+    assert_equal "/news/#{sirius_slug}", sirius["url"]
+    assert_equal "http://www.example.com/news", inertia_props["meta"]["canonical_url"]
     assert_equal "website", inertia_props["meta"]["og_type"]
   end
 
@@ -38,12 +38,12 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     news = inertia_props["news"]
     slugs = news.map { |item| item["slug"] }
 
-    stefan_slug = "stefan-explains-why-he-is-starting-follow-the-bass"
+    stefan_slug = "stefan-opens-up-after-8-years-in-tokyo"
     sirius_slug = "allen-mock-and-tha-boogie-bandit-debut-on-ophelia-records-with-sirius"
     assert_equal 1, slugs.count(stefan_slug)
     assert_equal 1, slugs.count(sirius_slug)
-    assert_equal "/news/#{stefan_slug}", news.find { |item| item["slug"] == stefan_slug }["url"]
-    assert_equal "/news/#{sirius_slug}", news.find { |item| item["slug"] == sirius_slug }["url"]
+    assert_equal "/en/news/#{stefan_slug}", news.find { |item| item["slug"] == stefan_slug }["url"]
+    assert_equal "/en/news/#{sirius_slug}", news.find { |item| item["slug"] == sirius_slug }["url"]
     assert_equal "en", news.find { |item| item["slug"] == stefan_slug }["locale"]
   end
 
@@ -57,12 +57,12 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
       assert_equal "2022-08-19", inertia_props["news"]["published_at"]
       assert_equal [
         { "type" => "artist", "slug" => "allen-mock", "name" => "Allen Mock",
-          "url" => locale == :ja ? "/ja/artists/allen-mock" : "/artists/allen-mock" },
+          "url" => locale == :ja ? "/artists/allen-mock" : "/en/artists/allen-mock" },
         {
           "type" => "artist",
           "slug" => "tha-boogie-bandit",
           "name" => "Tha Boogie Bandit",
-          "url" => locale == :ja ? "/ja/artists/tha-boogie-bandit" : "/artists/tha-boogie-bandit"
+          "url" => locale == :ja ? "/artists/tha-boogie-bandit" : "/en/artists/tha-boogie-bandit"
         }
       ], inertia_props["news"]["tags"]
     end
@@ -77,11 +77,11 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
   test "redirects the root path to the Japanese news index" do
     get "/"
 
-    assert_redirected_to "/ja/news"
+    assert_redirected_to "/news"
   end
 
   test "renders the English translation of a news item" do
-    get news_path(locale: :en, slug: "stefan-explains-why-he-is-starting-follow-the-bass")
+    get news_path(locale: :en, slug: "stefan-opens-up-after-8-years-in-tokyo")
 
     assert_response :success
     assert_inertia_component "news/show"
@@ -91,10 +91,10 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "passes social preview metadata" do
-    get news_path(locale: :ja, slug: "stefan-explains-why-he-is-starting-follow-the-bass")
+    get news_path(slug: "stefan-opens-up-after-8-years-in-tokyo")
 
     assert_equal "http://www.example.com", inertia_props["meta"]["origin"]
-    assert_equal "http://www.example.com/ja/news/stefan-explains-why-he-is-starting-follow-the-bass",
+    assert_equal "http://www.example.com/news/stefan-opens-up-after-8-years-in-tokyo",
       inertia_props["meta"]["canonical_url"]
     assert_equal "article", inertia_props["meta"]["og_type"]
     assert_equal "ja_JP", inertia_props["meta"]["og_locale"]
