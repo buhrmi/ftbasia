@@ -3,9 +3,9 @@
   import logo from "~/assets/logo.png";
   import { absoluteUrl, formatNewsDate } from "~/news.js";
 
-  let { news, locale = "en", origin } = $props();
+  let { news, locale = "en", meta } = $props();
 
-  const imageUrl = $derived(absoluteUrl(logo, origin));
+  const imageUrl = $derived(absoluteUrl(logo, meta.origin));
 </script>
 
 <svelte:head>

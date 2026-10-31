@@ -3,10 +3,10 @@
   import { absoluteUrl, newsComponent, newsImage, formatNewsDate } from "~/news.js";
   import EntityTags from "~/shared/EntityTags.svelte";
 
-  let { locale, slug, news, news_url, origin } = $props();
+  let { locale, slug, news, news_url, meta } = $props();
 
   const Content = $derived(newsComponent(locale, slug));
-  const imageUrl = $derived(absoluteUrl(newsImage(slug, locale), origin));
+  const imageUrl = $derived(absoluteUrl(newsImage(slug, locale), meta.origin));
 </script>
 
 <svelte:head>
