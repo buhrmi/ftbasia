@@ -18,12 +18,27 @@
 
 <section class="home-hero" aria-labelledby="home-tagline">
   <img class="home-hero__logo" src={logo} alt="Follow The Bass" />
-  <h1 id="home-tagline">The independent bass music festival in Tokyo and beyond</h1>
+  <h1 id="home-tagline">Independent bass music in Tokyo and beyond</h1>
   <ul class="home-hero__genres" aria-label="Genres">
   {#each genres as genre (genre.name)}
     <li class="genre-badge genre-badge--{genre.style}">{genre.name}</li>
     {/each}
   </ul>
+</section>
+
+<section class="upcoming-events" aria-labelledby="upcoming-events-heading">
+  <div class="upcoming-events__heading">
+    <h2 id="upcoming-events-heading">{data.locale === "ja" ? "今後のイベント" : "Upcoming events"}</h2>
+    <a href={data.locale === "en" ? "/en/events" : "/events"}>
+      {data.locale === "ja" ? "過去のイベント" : "Past events"}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+  <p class="upcoming-events__empty">
+    {data.locale === "ja"
+      ? "イベントはまだ発表されていません。続報をお待ちください。"
+      : "No events announced. Check back soon."}
+  </p>
 </section>
 
 <NewsIndex news={data.news} locale={data.locale} meta={data.meta} />
@@ -38,8 +53,53 @@
     text-align: center;
   }
 
+  .upcoming-events {
+    border-top: 1px solid rgb(255 255 255 / 10%);
+    padding-block: 1.5rem;
+  }
+
+  .upcoming-events__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .upcoming-events h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .upcoming-events__empty {
+    margin: 0.75rem 0 0;
+    color: #a3a3a3;
+    font-size: 0.875rem;
+  }
+
+  .upcoming-events a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.4rem;
+    color: #a3a3a3;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .upcoming-events a:hover {
+    color: white;
+  }
+
+  .upcoming-events a:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+  }
+
   .home-hero__logo {
-    width: min(15rem, 65vw);
+    width: min(19rem, 75vw);
     height: auto;
     object-fit: contain;
   }
@@ -49,7 +109,7 @@
     margin: 0;
     color: #f0ede7;
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
     font-weight: 300;
     line-height: 1.25;
     letter-spacing: 0.01em;

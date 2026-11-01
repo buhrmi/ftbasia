@@ -20,9 +20,6 @@
     </a>
     <nav class="site-nav" aria-label={locale === "ja" ? "メインナビゲーション" : "Main navigation"}>
       <a href={`${localePrefix}/news`}>{locale === "ja" ? "ニュース" : "News"}</a>
-      <a href={`${localePrefix}/events/tokyo-bass-conference`}>
-        {locale === "ja" ? "イベント" : "Event"}
-      </a>
     </nav>
   </div>
 </header>

@@ -202,6 +202,19 @@ export function getProfile(type, slug, locale) {
   return profile;
 }
 
+export function getPastEvents(locale) {
+  if (!LOCALES.has(locale)) throw new Error(`Unsupported locale: ${locale}`);
+  return filesIn(PROFILE_TYPES.event, ".yml")
+    .map((filename) => filename.replace(/\.yml$/, ""))
+    .map((slug) => getProfile("event", slug, locale))
+    .filter((profile) => profile?.starts_at && Date.parse(profile.starts_at) <= Date.now())
+    .sort((a, b) => Date.parse(b.starts_at) - Date.parse(a.starts_at))
+    .map((profile) => ({
+      ...profile,
+      url: localizedPath(locale, `/events/${profile.slug}`)
+    }));
+}
+
 function parseFrontMatter(path) {
   const contents = readFileSync(path, "utf8");
   const match = FRONT_MATTER.exec(contents);

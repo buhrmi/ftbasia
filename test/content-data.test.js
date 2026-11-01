@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import {
   getNews,
   getNewsForIndex,
+  getPastEvents,
   getProfile,
   getTaggedNews
 } from "../src/contentData.server.js";
@@ -59,6 +60,15 @@ describe("file-backed content", () => {
     expect(getProfile("event", "tokyo-bass-conference", "en")?.description).toContain(
       "booking process"
     );
+  });
+
+  test("lists past events with localized event links", () => {
+    const english = getPastEvents("en");
+    const japanese = getPastEvents("ja");
+    expect(english).toHaveLength(1);
+    expect(english[0].flyer).toBe("2016-far-too-loud.jpg");
+    expect(english[0].url).toBe("/en/events/tokyo-bass-conference");
+    expect(japanese[0].url).toBe("/events/tokyo-bass-conference");
   });
 
   test("loads every profile in both locales", () => {
