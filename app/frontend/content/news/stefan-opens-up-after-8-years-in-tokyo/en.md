@@ -6,8 +6,6 @@ category: interview
 tags:
   - type: artist
     slug: stefan
-  - type: event
-    slug: beginning-tokyo
 ---
 Welcome to the official Follow The Bass website.
 
@@ -37,18 +35,18 @@ The biggest reason I started Follow The Bass is to restore the "Honor" and genui
 ### Q2: You say it was "unfairly taken." What exactly happened?
 
 **Stefan:**
-It concerns the launch of the Tokyo-based event brand "Beginning" (Instagram: `@beginningtokyo`).
+It concerns the launch of a Tokyo-based event brand.
 
-If you scroll all the way back to the very beginning of their Instagram account, the names of notable artists credited early on include **Siren** and [**Far Too Loud**](/en/shows/far-too-loud). But there is a truth the public does not know. The person who contacted those international artists directly, negotiated their appearances, and paid their fees out of his own pocket to make those bookings happen was none other than me, Stefan.
+If you look back at the event's earliest records, the names of notable artists credited early on include **Siren** and [**Far Too Loud**](/en/shows/far-too-loud). But there is a truth the public does not know. The person who contacted those international artists directly, negotiated their appearances, and paid their fees out of his own pocket to make those bookings happen was none other than me, Stefan.
 
-The reason the Beginning brand got off the ground and became known in the scene was the artist lineup I provided with my own money and passion. But once the events began to gain momentum, the organizers refused to acknowledge my contribution at all — not even a word of thanks — and betrayed me by pushing me out as if I had never existed.
+The reason the brand got off the ground and became known in the scene was the artist lineup I provided with my own money and passion. But once the events began to gain momentum, the organizers refused to acknowledge my contribution at all — not even a word of thanks — and betrayed me by pushing me out as if I had never existed.
 
 ---
 
-### Q3: Did you not speak directly with the organizer, Sako?
+### Q3: Did you not speak directly with the organizer?
 
 **Stefan:**
-I could not accept it, and I tried many times to talk to him directly, as a professional. But Sako's response was far too insincere to be acceptable.
+I could not accept it, and I tried many times to talk to the organizer directly, as a professional. But the response was far too insincere to be acceptable.
 
 When I pressed him, the moment he was cornered he insisted that he "doesn't understand English" and refused dialogue entirely. On top of that, he grew agitated, showed his irritation, and eventually shoved me away by force before fleeing.
 
