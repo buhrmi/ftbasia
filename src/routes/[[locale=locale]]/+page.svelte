@@ -18,7 +18,7 @@
 
 <section class="home-hero" aria-labelledby="home-tagline">
   <img class="home-hero__logo" src={logo} alt="Follow The Bass" />
-  <h1 id="home-tagline">Independent bass music in Tokyo and beyond</h1>
+  <h1 id="home-tagline">Bass music culture in Tokyo and beyond. Est 2014.</h1>
   <ul class="home-hero__genres" aria-label="Genres">
   {#each genres as genre (genre.name)}
     <li class="genre-badge genre-badge--{genre.style}">{genre.name}</li>
