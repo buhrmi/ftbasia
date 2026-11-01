@@ -29,6 +29,14 @@ class NewsTest < ActiveSupport::TestCase
     end
   end
 
+  test "reads the category from front matter" do
+    with_content_dir do |dir|
+      write_news(dir, "release", "en", title: "Release", category: "release")
+
+      assert_equal "release", News.find(locale: :en, slug: "release").category
+    end
+  end
+
   private
 
   def with_content_dir
@@ -39,12 +47,13 @@ class NewsTest < ActiveSupport::TestCase
     end
   end
 
-  def write_news(dir, slug, locale, title:)
+  def write_news(dir, slug, locale, title:, category: nil)
     path = Pathname(dir).join(slug, "#{locale}.md")
     path.dirname.mkpath
     path.write(<<~MARKDOWN)
       ---
       title: #{title}
+      #{category ? "category: #{category}" : ""}
       description: Description
       published_at: 2026-10-30
       ---

@@ -3,7 +3,7 @@ class News
   SLUG_PATTERN = /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/
   FRONT_MATTER = /\A---\s*\n(.*?)\n---\s*\n/m
 
-  attr_reader :slug, :locale, :title, :description, :published_at
+  attr_reader :slug, :locale, :title, :description, :published_at, :category
 
   class << self
     def all(locale:)
@@ -41,6 +41,7 @@ class News
     @title = data["title"].to_s
     @description = data["description"].to_s
     @published_at = parse_date(data["published_at"] || data["created_at"])
+    @category = data["category"].to_s.presence
     @tag_data = data["tags"]
   end
 

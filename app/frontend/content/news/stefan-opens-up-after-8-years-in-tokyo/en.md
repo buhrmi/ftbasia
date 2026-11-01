@@ -2,6 +2,7 @@
 title: Our founder Stefan opens up about his experience after living in Tokyo for over 8 years
 description: Follow The Bass founder Stefan reflects on more than eight years in Tokyo and the belief in Honor that led him to start a new bass music brand.
 published_at: 2026-10-30
+category: interview
 tags:
   - type: artist
     slug: stefan

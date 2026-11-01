@@ -9,6 +9,7 @@ module NewsPresentation
       locale: news.locale,
       title: news.title,
       description: news.description,
+      category: news.category,
       published_at: news.published_at&.iso8601,
       url: news_path(slug: news.slug, locale: prefixed_locale(news.locale)),
       tags: news.tags.map { |tag| tag_props(tag) }

@@ -2,6 +2,7 @@
 title: DJ AKi and Yellock bootleg Domination to turn it into a DnB banger
 description: DJ AKi and YELLOCK turn Holy Priest & Rekkt's "Domination" into a hard-hitting drum'n'bass bootleg, free to download ahead of 06S's 25th anniversary.
 published_at: 2026-10-31
+category: release
 tags:
   - type: artist
     slug: dj-aki

@@ -2,6 +2,7 @@
 title: DJ AKiとYELLOCKが「Domination」をブートレッグし、DnBの猛曲に
 description: DJ AKiとYELLOCKがHoly Priest & Rekktの「Domination」をドラムンベースにブートレッグ。06S 25周年を前にフリーダウンロードで公開。
 published_at: 2026-10-31
+category: release
 tags:
   - type: artist
     slug: dj-aki

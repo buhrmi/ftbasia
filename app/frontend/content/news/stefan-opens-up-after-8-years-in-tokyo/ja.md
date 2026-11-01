@@ -2,6 +2,7 @@
 title: 【創業者インタビュー】東京で8年以上を過ごした創業者Stefanが、これまでの経験を語る
 description: Follow The Bass創業者Stefanが、東京で8年以上を過ごした経験と、ブランド設立の背景にある「Honor（仁義・誇り）」への想いを語ります。
 published_at: 2026-10-30
+category: interview
 tags:
   - type: artist
     slug: stefan

@@ -2,6 +2,7 @@
 title: Allen MockとTha Boogie Bandit、「Sirius」でOphelia Recordsからデビュー
 description: 2022年8月19日、東京を拠点に活動するAllen MockとTha Boogie Banditが、Ophelia Recordsから「Sirius」をリリースしました。
 published_at: 2022-08-19
+category: release
 tags:
   - type: artist
     slug: allen-mock

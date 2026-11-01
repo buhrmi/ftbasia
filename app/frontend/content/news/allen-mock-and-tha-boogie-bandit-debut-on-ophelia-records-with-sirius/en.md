@@ -2,6 +2,7 @@
 title: Allen Mock and Tha Boogie Bandit debut with "Sirius" on Ophelia Records
 description: Allen Mock and Tha Boogie Bandit debut on Ophelia Records with "Sirius," released August 19, 2022.
 published_at: 2022-08-19
+category: release
 tags:
   - type: artist
     slug: allen-mock
