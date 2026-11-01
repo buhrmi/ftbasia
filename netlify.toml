@@ -20,3 +20,13 @@ status = 301
 from = "/en/shows/far-too-loud"
 to = "/en/events/tokyo-bass-conference"
 status = 301
+
+[[redirects]]
+from = "/events/far-too-loud"
+to = "/events/tokyo-bass-conference"
+status = 301
+
+[[redirects]]
+from = "/en/events/far-too-loud"
+to = "/en/events/tokyo-bass-conference"
+status = 301
