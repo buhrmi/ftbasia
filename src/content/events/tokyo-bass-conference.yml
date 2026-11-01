@@ -1,0 +1,34 @@
+name: Tokyo Bass Conference feat. Far Too Loud
+location:
+  en: Tokyo, Japan
+  ja: 東京
+bio:
+  en: A Tokyo bass music showcase produced in 2016 with Tokyo Bass Music.
+  ja: 2016年にTokyo Bass Musicとともに開催した東京のベースミュージック公演です。
+kind:
+  en: Joint project
+  ja: 共同企画
+starts_at: "2016-01-23T22:00:00+09:00"
+description:
+  en: A joint project with Tokyo Bass Music. Follow The Bass supported the event financially and handled the booking process.
+  ja: Tokyo Bass Music との共同企画。Follow The Bass が資金面で協力し、ブッキングの進行を担いました。
+performers:
+  en:
+    - Far Too Loud
+  ja:
+    - Far Too Loud
+work:
+  en:
+    - title: Booking
+      body: Led the booking process, including negotiations with the overseas agent, performance terms, and contracts.
+    - title: Financial support
+      body: Supported the event financially.
+  ja:
+    - title: ブッキング
+      body: ブッキングの進行を担当。海外エージェントとの交渉、出演条件の調整、契約。
+    - title: 資金面の協力
+      body: 公演の資金面で協力しました。
+links:
+  - label: Tokyo Bass Music
+    url: https://www.facebook.com/TokyoBassMusic/
+flyer: 2016-far-too-loud.jpg

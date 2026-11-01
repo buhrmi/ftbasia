@@ -1,17 +1,31 @@
-import { svelte } from '@sveltejs/vite-plugin-svelte'
-import inertia from 'inertiax-vite'
+import adapter from '@sveltejs/adapter-netlify'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vite'
-import RubyPlugin from 'vite-plugin-ruby'
+import { resolve } from 'node:path'
+import { importAssets } from 'svelte-preprocess-import-assets'
+import { mdsvex } from 'mdsvex'
 import UnoCSS from 'unocss/vite'
 import presetIcons from "@unocss/preset-icons"
 import { presetWind4 } from 'unocss'
 import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
-  envPrefix: ['VITE_', 'RAILS_ENV'],
   plugins: [
-    imagetools(),
-    RubyPlugin(),
+    sveltekit({
+      extensions: ['.svelte', '.md'],
+      preprocess: [
+        vitePreprocess(),
+        mdsvex({ extensions: ['.md'] }),
+        importAssets()
+      ],
+      adapter: adapter(),
+      files: {
+        assets: 'public',
+        routes: 'src/routes',
+        params: 'src/params.js'
+      }
+    }),
     UnoCSS({
       presets: [
         presetIcons({
@@ -23,11 +37,11 @@ export default defineConfig({
         presetWind4()
       ],
     }),
-    inertia({
-      ssr: {
-        entry: 'entrypoints/inertia.js',
-      },
-    }),
-    svelte(),
-  ]
+    imagetools()
+  ],
+  resolve: {
+    alias: {
+      '~': resolve('src')
+    }
+  }
 })

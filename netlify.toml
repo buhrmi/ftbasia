@@ -1,0 +1,22 @@
+[build]
+command = "npm run build"
+publish = "build"
+
+[build.environment]
+NODE_VERSION = "22"
+
+[functions]
+included_files = [
+  "src/content/**/*.yml",
+  "src/content/news/**/*.md"
+]
+
+[[redirects]]
+from = "/shows/far-too-loud"
+to = "/events/tokyo-bass-conference"
+status = 301
+
+[[redirects]]
+from = "/en/shows/far-too-loud"
+to = "/en/events/tokyo-bass-conference"
+status = 301

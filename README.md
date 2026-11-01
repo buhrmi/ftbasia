@@ -1,24 +1,37 @@
-# README
+# Follow The Bass
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The site is a SvelteKit application deployed to Netlify. Artist and event
+details are read from YAML files; news articles are Markdown files with YAML
+front matter. No database or Rails runtime is required.
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+Install [Bun](https://bun.sh/), then run:
 
-* System dependencies
+```sh
+bun install
+bun run dev
+```
 
-* Configuration
+The development server is available at `http://localhost:5173`. Japanese is the
+default locale (`/news`); English pages use `/en` (`/en/news`).
 
-* Database creation
+## Verification and deployment
 
-* Database initialization
+```sh
+bun test
+bun run build
+```
 
-* How to run the test suite
+Netlify uses the SvelteKit Netlify adapter and the settings in `netlify.toml`.
+Connect the repository to Netlify and it will install dependencies, run the
+build, and publish the generated site and serverless function. The content files
+are included with the function so YAML-backed routes work at runtime.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Content
 
-* Deployment instructions
+- `src/content/artists/*.yml`
+- `src/content/events/*.yml`
+- `src/content/news/<slug>/<locale>.md`
 
-* ...
+Markdown news files may include a preview image in their article directory.
