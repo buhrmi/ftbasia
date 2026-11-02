@@ -9,9 +9,9 @@ tags:
 ---
 After more than eight years in Tokyo, Follow The Bass founder **Stefan** reflects on the work behind the events and the ideas shaping this new chapter.
 
-For years, Stefan worked behind the scenes booking international artists, planning events and arranging funding. Those experiences shaped a simple belief: the best nights are built on trust, clear communication and respect for everyone involved.
+In 2014, Stefan founded **New Sound For Japan**, a project that brought international bass artists to Tokyo. It is now dormant, and Follow The Bass is its spiritual successor. Today, Stefan is based in Da Nang, Vietnam, where he continues to explore bass music and share live DJ sets.
 
-Follow The Bass brings that belief to a new event brand centered on drum and bass, dubstep and trap. We spoke with Stefan about his background, what **Honor** means to him, and the kind of music community he hopes to build.
+We spoke with Stefan about his early work, what he is bringing into this new chapter, and the kind of music community he hopes to build.
 
 For more on Stefan's profile and work, see his [artist page](/en/artists/stefan).
 
@@ -19,21 +19,19 @@ For more on Stefan's profile and work, see his [artist page](/en/artists/stefan)
 
 ## Interview: founder Stefan on building Follow The Bass
 
-### Q1: Could you tell us about your background in the music scene?
+### Q1: What was New Sound For Japan?
 
 **Stefan:**
-Hello everyone. I'm Stefan, founder of Follow The Bass.
+It was the name I used to bring international bass artists to Tokyo between 2014 and 2016. I coordinated with agents and handled flights, visas, artist fees and accommodation, covering many of the costs myself.
 
-For many years I worked behind the scenes rather than on stage. I booked international artists, planned events and helped arrange funding, contributing to Japan's bass music scene.
+In 2016, I worked with Tokyo Bass Music to bring Far Too Loud to Tokyo and co-produce the date. That collaboration remains an important part of my experience. You can read more about the event on the [Tokyo Bass Conference page](/en/events/tokyo-bass-conference).
 
-That work gave me a lasting appreciation for all the people it takes to bring an event to life: artists, organizers, venue teams and audiences.
-
-### Q2: What inspired you to start Follow The Bass?
+### Q2: What led you to start Follow The Bass?
 
 **Stefan:**
-My experiences in the scene made me think carefully about the kind of events I want to create. Follow The Bass is an opportunity to put those lessons into practice and build nights around music, trust and mutual respect.
+After putting on several events under New Sound For Japan, I decided to let the project rest. Over time, I felt ready to return to event production with a new chapter and a clear focus.
 
-I want the brand to be a place where people can come together for powerful bass music and feel welcome as part of the community.
+Follow The Bass is a spiritual successor to that earlier project: a platform for the music I love and for events built with care for the artists, venues, staff and audiences who make them possible.
 
 ### Q3: What does "Honor" mean to you?
 
@@ -42,18 +40,28 @@ For me, Honor means taking responsibility for what I say and do, communicating o
 
 Events work best when everyone understands the plan and can trust one another. I want Follow The Bass to make that a visible part of how we work with artists, venues, staff and partners.
 
-### Q4: What can people expect from Follow The Bass?
+### Q4: How will Follow The Bass work with artists and venues?
 
 **Stefan:**
-Musically, Follow The Bass focuses on drum and bass, dubstep and trap, with a commitment to powerful sound and carefully considered lineups.
+We work with booking companies on artist bookings and coordinate the practical side of bringing an event together, including visas, travel and the venue.
 
-We aim to:
+Our approach is to plan for Follow The Bass to carry the event costs—including travel, accommodation and artist fees—rather than asking artists to sell tickets to friends to secure a place on a lineup. If a night runs at a loss, we intend to take responsibility for that risk rather than pass it to the venue or artists.
 
-1. **Communicate clearly** with artists, venues, staff and partners throughout the planning process.
-2. **Recognize everyone's contribution** and work together with respect.
-3. **Create memorable bass music experiences** that bring people together around the music.
+### Q5: What can people expect musically?
 
-### Q5: What would you like to say to future audiences and venue partners?
+**Stefan:**
+Follow The Bass focuses on drum and bass, dubstep and trap, with a commitment to powerful sound and carefully considered lineups.
+
+We want to create memorable nights where people can come together around the music and feel welcome as part of the community.
+
+### Q6: What are you doing in Da Nang?
+
+**Stefan:**
+I'm learning about a new scene from the outside. When there isn't a venue or a budget, I take a speaker and a controller to the promenade and play there. I stream those sets live on Twitch.
+
+It's a way to keep sharing music, wherever I am.
+
+### Q7: What would you like to say to future audiences and venue partners?
 
 **Stefan:**
 I'm excited to build Follow The Bass with people who care about music, thoughtful events and a welcoming atmosphere.

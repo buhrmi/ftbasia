@@ -1,4 +1,4 @@
-import { readdirSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, test } from "bun:test";
 import { fileURLToPath } from "node:url";
@@ -41,11 +41,28 @@ describe("file-backed content", () => {
   test("localizes artist profiles and media", () => {
     const stefan = getProfile("artist", "stefan", "ja");
     expect(stefan?.role).toBe("アーティスト・創設者");
-    expect(stefan?.interview).toHaveLength(6);
+    expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
     expect(getProfile("artist", "allen-mock", "en")?.links[0].url).toBe(
       "https://allenmock.bandcamp.com/"
     );
+  });
+
+  test("keeps Stefan's expanded interview details in the news article", () => {
+    const english = readFileSync(
+      join(contentDirectory, "news/stefan-opens-up-after-8-years-in-tokyo/en.md"),
+      "utf8"
+    );
+    const japanese = readFileSync(
+      join(contentDirectory, "news/stefan-opens-up-after-8-years-in-tokyo/ja.md"),
+      "utf8"
+    );
+    expect(english).toContain("New Sound For Japan");
+    expect(english).toContain("Tokyo Bass Music");
+    expect(english).toContain("live on Twitch");
+    expect(japanese).toContain("New Sound For Japan");
+    expect(japanese).toContain("Tokyo Bass Music");
+    expect(japanese).toContain("Twitchでライブ配信");
   });
 
   test("includes event details and tagged news on the event profile", () => {
