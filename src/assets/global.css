@@ -9,3 +9,8 @@ body {
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
+
+.news-page + footer {
+  position: relative;
+  z-index: 1;
+}
