@@ -1,4 +1,5 @@
 <script>
+  import { page } from "$app/state";
   import Footer from "~/shared/Footer.svelte";
   import logo from "~/assets/logo.png";
 
@@ -7,6 +8,11 @@
   const SITE_NAME = "Follow The Bass";
   const locale = $derived(data.locale);
   const localePrefix = $derived(locale === "en" ? "/en" : "");
+  const unlocalizedPath = $derived(page.url.pathname.replace(/^\/en(?=\/|$)/, "") || "/");
+  const japaneseHref = $derived(`${unlocalizedPath}${page.url.search}${page.url.hash}`);
+  const englishHref = $derived(
+    `/en${unlocalizedPath === "/" ? "" : unlocalizedPath}${page.url.search}${page.url.hash}`
+  );
 </script>
 
 <header class="site-header">
@@ -20,6 +26,24 @@
     </a>
     <nav class="site-nav" aria-label={locale === "ja" ? "メインナビゲーション" : "Main navigation"}>
       <a href={`${localePrefix}/news`}>{locale === "ja" ? "ニュース" : "News"}</a>
+      <div
+        class="language-toggle"
+        role="group"
+        aria-label={locale === "ja" ? "言語を選択" : "Select language"}
+      >
+        <a
+          href={japaneseHref}
+          lang="ja"
+          aria-current={locale === "ja" ? "page" : undefined}
+          class:language-toggle__active={locale === "ja"}
+        >JA</a>
+        <a
+          href={englishHref}
+          lang="en"
+          aria-current={locale === "en" ? "page" : undefined}
+          class:language-toggle__active={locale === "en"}
+        >EN</a>
+      </div>
     </nav>
   </div>
 </header>
@@ -119,6 +143,33 @@
 
   .site-nav a:hover {
     color: white;
+  }
+
+  .language-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.1rem;
+    border: 1px solid rgb(255 255 255 / 12%);
+    border-radius: 9999px;
+    padding: 0.15rem;
+  }
+
+  .site-nav .language-toggle a {
+    border-radius: 9999px;
+    padding: 0.35rem 0.45rem;
+    color: #a3a3a3;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .site-nav .language-toggle a.language-toggle__active {
+    background: rgb(255 255 255 / 12%);
+    color: white;
+  }
+
+  .site-nav .language-toggle a:focus-visible {
+    outline-offset: 2px;
   }
 
   @media (max-width: 420px) {
