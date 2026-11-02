@@ -7,10 +7,10 @@
   let { data } = $props();
 
   const genres = [
-    { name: "Drum n Bass", style: "dnb" },
+    { name: "Drum & Bass", style: "dnb" },
     { name: "Dubstep", style: "dubstep" },
     { name: "Trap", style: "trap" },
-    { name: "Electro", style: "electro" }
+    { name: "Hardstyle", style: "hardstyle" }
   ];
 </script>
 
@@ -18,7 +18,7 @@
 
 <section class="home-hero" aria-labelledby="home-tagline">
   <img class="home-hero__logo" src={logo} alt="Follow The Bass" />
-  <h1 id="home-tagline">Bass music culture in Tokyo and beyond. Est 2014.</h1>
+  <h1 id="home-tagline">Pushing the bass music culture in Tokyo and beyond since 2014.</h1>
   <ul class="home-hero__genres" aria-label="Genres">
   {#each genres as genre (genre.name)}
     <li class="genre-badge genre-badge--{genre.style}">{genre.name}</li>
@@ -26,20 +26,6 @@
   </ul>
 </section>
 
-<section class="venue-cta" aria-labelledby="venue-cta-heading">
-  <div>
-    <p>{data.locale === "ja" ? "会場オーナー・マネージャーの皆さまへ" : "For venue owners and managers"}</p>
-    <h2 id="venue-cta-heading">
-      {data.locale === "ja"
-        ? "Follow The Bassのイベントを開催しませんか？"
-        : "Host a Follow The Bass night"}
-    </h2>
-  </div>
-  <a href={data.locale === "en" ? "/en/partners" : "/partners"}>
-    {data.locale === "ja" ? "パートナーについて" : "Explore venue partnerships"}
-    <span aria-hidden="true">→</span>
-  </a>
-</section>
 
 <section class="upcoming-events" aria-labelledby="upcoming-events-heading">
   <div class="upcoming-events__heading">
@@ -54,6 +40,21 @@
       ? "イベントはまだ発表されていません。続報をお待ちください。"
       : "No events announced. Check back soon."}
   </p>
+</section>
+
+<section class="venue-cta mb-12" aria-labelledby="venue-cta-heading">
+  <div>
+    <p>{data.locale === "ja" ? "会場オーナー・マネージャーの皆さまへ" : "For venue owners and managers"}</p>
+    <h2 id="venue-cta-heading">
+      {data.locale === "ja"
+        ? "Follow The Bassのイベントを開催しませんか？"
+        : "Host a Follow The Bass night"}
+    </h2>
+  </div>
+  <a href={data.locale === "en" ? "/en/partners" : "/partners"}>
+    {data.locale === "ja" ? "パートナーについて" : "Explore venue partnerships"}
+    <span aria-hidden="true">→</span>
+  </a>
 </section>
 
 <NewsIndex news={data.news} locale={data.locale} meta={data.meta} />
@@ -124,7 +125,8 @@
     margin: 0;
     color: #f0ede7;
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+    font-size: clamp(1.25rem, 3.5vw, 1.35rem);
+    transform: translateY(-1.5rem);
     font-weight: 300;
     line-height: 1.25;
     letter-spacing: 0.01em;
@@ -218,7 +220,7 @@
     color: #ffb09a;
   }
 
-  .genre-badge--electro {
+  .genre-badge--hardstyle {
     border: 1px solid rgb(111 216 235 / 50%);
     background: rgb(111 216 235 / 12%);
     color: #9ce8f5;
