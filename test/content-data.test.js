@@ -43,8 +43,11 @@ describe("file-backed content", () => {
   test("localizes artist profiles and media", () => {
     const stefan = getProfile("artist", "stefan", "ja");
     expect(stefan?.role).toBe("アーティスト・創設者");
+    expect(stefan?.bio).toContain("ウェブ開発者");
+    expect(stefan?.links.some(({ url }) => url === "https://github.com/buhrmi")).toBe(true);
     expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
+    expect(getProfile("artist", "stefan", "en")?.bio).toContain("former web developer");
     expect(getProfile("artist", "allen-mock", "en")?.links[0].url).toBe(
       "https://allenmock.bandcamp.com/"
     );
