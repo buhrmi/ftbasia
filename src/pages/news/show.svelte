@@ -49,9 +49,9 @@
           <img src={announcementPhoto} alt="Stefan, founder, with Tony, accountant" loading="lazy" />
           <figcaption>
             {#if locale === "ja"}
-              創設者<a href="/artists/stefan">Stefan</a>とTony
+              創設者<a href="/artists/danangbassman">Stefan</a>とTony
             {:else}
-              Founder <a href="/en/artists/stefan">Stefan</a> &amp; Tony
+              Founder <a href="/en/artists/danangbassman">Stefan</a> &amp; Tony
             {/if}
           </figcaption>
         </figure>

@@ -35,19 +35,20 @@ describe("file-backed content", () => {
 
     const interview = getNews("en", "stefan-opens-up-after-8-years-in-tokyo");
     expect(interview?.tags.map(({ type, slug }) => ({ type, slug }))).toEqual([
-      { type: "artist", slug: "stefan" }
+      { type: "artist", slug: "danangbassman" }
     ]);
     expect(interview?.url).toBe("/en/news/stefan-opens-up-after-8-years-in-tokyo");
   });
 
   test("localizes artist profiles and media", () => {
-    const stefan = getProfile("artist", "stefan", "ja");
+    const stefan = getProfile("artist", "danangbassman", "ja");
     expect(stefan?.role).toBe("アーティスト・創設者");
     expect(stefan?.bio).toContain("ウェブ開発者");
     expect(stefan?.links.some(({ url }) => url === "https://github.com/buhrmi")).toBe(true);
     expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
-    expect(getProfile("artist", "stefan", "en")?.bio).toContain("former web developer");
+    expect(getProfile("artist", "danangbassman", "en")?.bio).toContain("former web developer");
+    expect(getProfile("artist", "stefan", "en")).toBeUndefined();
     expect(getProfile("artist", "allen-mock", "en")?.links[0].url).toBe(
       "https://allenmock.bandcamp.com/"
     );
@@ -78,7 +79,7 @@ describe("file-backed content", () => {
     expect(event?.work[0].title).toBe("ブッキング");
     expect(event?.flyer).toBe("2016-far-too-loud.jpg");
     expect(event?.links[0].url).toBe("https://www.facebook.com/TokyoBassMusic/");
-    expect(getTaggedNews("artist", "stefan", "en")).toHaveLength(1);
+    expect(getTaggedNews("artist", "danangbassman", "en")).toHaveLength(1);
     expect(getProfile("event", "tokyo-bass-conference", "en")?.description).toContain(
       "booking process"
     );

@@ -5,7 +5,7 @@ published_at: 2026-10-30
 category: interview
 tags:
   - type: artist
-    slug: stefan
+    slug: danangbassman
 ---
 東京で8年以上活動してきたFollow The Bass創設者の**Stefan**が、イベントの裏側で積み重ねてきた経験や、困難だった出来事から学んだこと、新たなスタートに込めた想いを語ります。
 
@@ -13,7 +13,7 @@ Stefanは2014年に、海外のベースミュージックアーティストを�
 
 これまでの活動や新たな挑戦に込めた想い、これから作りたい音楽コミュニティについて聞きました。
 
-Stefanのプロフィールやこれまでの活動については、[アーティストページ](/artists/stefan)をご覧ください。
+Stefanのプロフィールやこれまでの活動については、[アーティストページ](/artists/danangbassman)をご覧ください。
 
 ---
 

@@ -30,3 +30,13 @@ status = 301
 from = "/en/events/far-too-loud"
 to = "/en/events/tokyo-bass-conference"
 status = 301
+
+[[redirects]]
+from = "/artists/stefan"
+to = "/artists/danangbassman"
+status = 301
+
+[[redirects]]
+from = "/en/artists/stefan"
+to = "/en/artists/danangbassman"
+status = 301
