@@ -48,11 +48,9 @@
         <figure class="news-photo">
           <img src={announcementPhoto} alt="Stefan, founder, with Tony, accountant" loading="lazy" />
           <figcaption>
-            {#if locale === "ja"}
-              創設者<a href="/artists/danangbassman">Stefan</a>とTony
-            {:else}
-              Founder <a href="/en/artists/danangbassman">Stefan</a> &amp; Tony
-            {/if}
+            <a href={locale === "ja" ? "/artists/danangbassman" : "/en/artists/danangbassman"}>
+              Stefan (@danangbassman)
+            </a>
           </figcaption>
         </figure>
       {/if}
