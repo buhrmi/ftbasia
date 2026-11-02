@@ -7,6 +7,9 @@
   const Content = $derived(newsComponent(locale, slug));
   const preview = $derived(newsImage(slug, locale));
   const imageUrl = $derived(absoluteUrl(preview, meta.origin));
+  const announcementPhoto = $derived(
+    slug === "follow-the-bass-launches-in-vietnam" ? preview : undefined
+  );
 </script>
 
 <svelte:head>
@@ -41,6 +44,18 @@
         <h1>{news.title}</h1>
         <EntityTags tags={news.tags} {locale} />
       </header>
+      {#if announcementPhoto}
+        <figure class="news-photo">
+          <img src={announcementPhoto} alt="Stefan, founder, with Tony, accountant" loading="lazy" />
+          <figcaption>
+            {#if locale === "ja"}
+              創設者<a href="/artists/stefan">Stefan</a>とTony
+            {:else}
+              Founder <a href="/en/artists/stefan">Stefan</a> &amp; Tony
+            {/if}
+          </figcaption>
+        </figure>
+      {/if}
       <div class="news-content">
         <Content />
       </div>
@@ -73,6 +88,30 @@
 
   .news-header {
     margin-bottom: 1.5rem;
+  }
+
+  .news-photo {
+    margin: 0 0 1.5rem;
+  }
+
+  .news-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  .news-photo figcaption {
+    margin-top: 0.5rem;
+    color: #a3a3a3;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .news-photo figcaption a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .news-header :global(h1) {
