@@ -7,7 +7,7 @@ tags:
   - type: artist
     slug: stefan
 ---
-After more than eight years in Tokyo, Follow The Bass founder **Stefan** reflects on the work behind the events and the ideas shaping this new chapter.
+After more than eight years in Tokyo, Follow The Bass founder **Stefan** reflects on the work behind the events, difficult experiences that shaped him, and the ideas guiding this new chapter.
 
 In 2014, Stefan founded **New Sound For Japan**, a project that brought international bass artists to Tokyo. It is now dormant, and Follow The Bass is its spiritual successor. Today, Stefan is based in Da Nang, Vietnam, where he continues to explore bass music and share live DJ sets.
 
@@ -29,9 +29,11 @@ In 2016, I worked with Tokyo Bass Music to bring Far Too Loud to Tokyo and co-pr
 ### Q2: What led you to start Follow The Bass?
 
 **Stefan:**
-After putting on several events under New Sound For Japan, I decided to let the project rest. Over time, I felt ready to return to event production with a new chapter and a clear focus.
+Some of my experiences in Japan's event scene were difficult. At times, I felt that the work, time and personal investment I put into events were not fully recognized, and that communication in some collaborations fell short of the openness and respect I value. That left me disappointed and made me reconsider whether to continue.
 
-Follow The Bass is a spiritual successor to that earlier project: a platform for the music I love and for events built with care for the artists, venues, staff and audiences who make them possible.
+After putting on several events under New Sound For Japan, I decided to let the project rest. Those experiences were part of what led me to take a step back; with time, I felt ready to return to event production with a new chapter and a clearer focus.
+
+Follow The Bass is a spiritual successor to that earlier project. I want to carry forward what I learned and build events with care for the artists, venues, staff and audiences who make them possible. Rather than define this brand by past disappointments, I want to put trust, clear communication and mutual respect into practice.
 
 ### Q3: What does "Honor" mean to you?
 

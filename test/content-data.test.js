@@ -23,13 +23,15 @@ describe("file-backed content", () => {
   test("loads news in both locales with category, links, and artist tags", () => {
     const english = getNewsForIndex("en");
     const japanese = getNewsForIndex("ja");
-    expect(english).toHaveLength(3);
-    expect(japanese).toHaveLength(3);
+    expect(english).toHaveLength(4);
+    expect(japanese).toHaveLength(4);
     expect(english.map((article) => article.category)).toEqual([
+      "announcement",
       "release",
       "interview",
       "release"
     ]);
+    expect(english[0].slug).toBe("follow-the-bass-launches-in-vietnam");
 
     const interview = getNews("en", "stefan-opens-up-after-8-years-in-tokyo");
     expect(interview?.tags.map(({ type, slug }) => ({ type, slug }))).toEqual([
