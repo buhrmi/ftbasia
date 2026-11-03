@@ -202,6 +202,23 @@ export function getProfile(type, slug, locale) {
   return profile;
 }
 
+export function getArtistIndex(locale) {
+  if (!LOCALES.has(locale)) throw new Error(`Unsupported locale: ${locale}`);
+  return filesIn(PROFILE_TYPES.artist, ".yml")
+    .map((filename) => filename.replace(/\.yml$/, ""))
+    .map((slug) => getProfile("artist", slug, locale))
+    .filter(Boolean)
+    .map((profile) => ({
+      slug: profile.slug,
+      name: profile.name,
+      role: profile.role,
+      location: profile.location,
+      tagline: profile.tagline,
+      bio: profile.bio,
+      url: localizedPath(locale, `/artists/${profile.slug}`)
+    }));
+}
+
 export function getPastEvents(locale) {
   if (!LOCALES.has(locale)) throw new Error(`Unsupported locale: ${locale}`);
   return filesIn(PROFILE_TYPES.event, ".yml")

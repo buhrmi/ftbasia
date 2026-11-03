@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import {
   getNews,
   getNewsForIndex,
+  getArtistIndex,
   getPastEvents,
   getProfile,
   getTaggedNews
@@ -51,6 +52,19 @@ describe("file-backed content", () => {
     expect(getProfile("artist", "stefan", "en")).toBeUndefined();
     expect(getProfile("artist", "allen-mock", "en")?.links[0].url).toBe(
       "https://allenmock.bandcamp.com/"
+    );
+  });
+
+  test("lists artists with localized profile URLs", () => {
+    const english = getArtistIndex("en");
+    const japanese = getArtistIndex("ja");
+    expect(english).toHaveLength(5);
+    expect(english.map(({ slug }) => slug)).toContain("danangbassman");
+    expect(english.find(({ slug }) => slug === "danangbassman")?.url).toBe(
+      "/en/artists/danangbassman"
+    );
+    expect(japanese.find(({ slug }) => slug === "danangbassman")?.url).toBe(
+      "/artists/danangbassman"
     );
   });
 

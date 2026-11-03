@@ -1,7 +1,6 @@
 <script>
   import { page } from "$app/state";
   import Footer from "~/shared/Footer.svelte";
-  import logo from "~/assets/logo.png";
 
   let { children, data } = $props();
 
@@ -18,13 +17,13 @@
 <header class="site-header">
   <div class="site-header-inner">
     <a class="site-brand" href={locale === "en" ? "/en" : "/"} aria-label={SITE_NAME}>
-      <img src={logo} alt="" class="site-brand__logo" />
       <span class="site-brand__copy">
         <span class="site-brand__name">Follow The Bass</span>
         <span class="site-brand__caption">Bass culture · Tokyo &amp; beyond</span>
       </span>
     </a>
     <nav class="site-nav" aria-label={locale === "ja" ? "メインナビゲーション" : "Main navigation"}>
+      <a href={`${localePrefix}/artists`}>{locale === "ja" ? "アーティスト" : "Artists"}</a>
       <a href={`${localePrefix}/news`}>{locale === "ja" ? "ニュース" : "News"}</a>
       <div
         class="language-toggle"
@@ -81,7 +80,6 @@
     display: inline-flex;
     min-width: 0;
     align-items: center;
-    gap: 0.8rem;
     color: inherit;
     text-decoration: none;
   }
@@ -90,13 +88,6 @@
   .site-nav a:focus-visible {
     outline: 2px solid white;
     outline-offset: 4px;
-  }
-
-  .site-brand__logo {
-    width: 2.75rem;
-    height: 2.75rem;
-    flex: 0 0 auto;
-    object-fit: contain;
   }
 
   .site-brand__copy {
@@ -175,15 +166,6 @@
   @media (max-width: 420px) {
     .site-header-inner {
       padding-inline: 1rem;
-    }
-
-    .site-brand {
-      gap: 0.55rem;
-    }
-
-    .site-brand__logo {
-      width: 2.35rem;
-      height: 2.35rem;
     }
 
     .site-brand__name {
