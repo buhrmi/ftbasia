@@ -11,8 +11,8 @@ export function load({ params, url }) {
       title: `${title} — Follow The Bass`,
       description:
         locale === "ja"
-          ? "Follow The Bassとともにベースミュージックを届けるアーティスト。"
-          : "Meet the artists bringing bass music to life with Follow The Bass.",
+          ? "Follow The Bassで紹介するベースミュージックのアーティスト。"
+          : "Artists featured on Follow The Bass, with profiles and information about their work.",
       locale,
       url
     })

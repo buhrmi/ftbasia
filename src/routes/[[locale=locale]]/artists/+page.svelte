@@ -15,8 +15,8 @@
     <h1 class="content-index__title">{japanese ? "アーティスト" : "Artists"}</h1>
     <p class="content-index__intro">
       {japanese
-        ? "それぞれのスタイルでベースミュージックを形づくるアーティストたち。"
-        : "Meet the artists shaping bass music in their own distinct ways."}
+        ? "注目アーティストのプロフィールや活動情報を紹介します。"
+        : "Discover artists featured on Follow The Bass and learn more about their work."}
     </p>
   </header>
 

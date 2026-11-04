@@ -10,18 +10,18 @@ tagline:
   ja: 自分の居場所をつかむために、闘い続ける。
 bio:
   en: >-
-    A former web developer, Stefan is now trying his hand at building Follow
-    The Bass, a bass music collective based in Da Nang, Vietnam. In 2014 he
-    founded New Sound For Japan, a brand that is now dormant. Follow The Bass
-    is its spiritual successor.
+    A former web developer, Stefan is now building Follow The Bass, a bass
+    music news and information site covering Tokyo, Da Nang, and beyond. In
+    2014 he founded New Sound For Japan, a brand that is now dormant. Follow
+    The Bass carries that project's history forward through coverage of the
+    bass music scene.
   ja: >-
-    元ウェブ開発者のStefanは現在、ベトナム・ダナンを拠点に、ベースミュージック・
-    コレクティブ「Follow The Bass」の立ち上げに挑戦しています。2014年には
-    「New Sound For Japan」を立ち上げましたが、現在は休止中です。Follow The Bassは
-    その精神を受け継ぐブランドです。
+    元ウェブ開発者のStefanは現在、東京やベトナム・ダナンをはじめ各地のベース
+    ミュージックニュースやアーティスト情報を紹介するサイト「Follow The Bass」を
+    運営しています。2014年には「New Sound For Japan」を立ち上げましたが、現在は
+    休止中です。Follow The Bassでは、ニュースやアーティスト紹介を通してベース
+    ミュージックのシーンを発信しています。
 links:
-  - label: Instagram · @danangbassman
-    url: https://instagram.com/danangbassman
   - label: Twitch · followthebass
     url: https://twitch.tv/followthebass
   - label: GitHub · buhrmi

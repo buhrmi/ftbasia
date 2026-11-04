@@ -22,12 +22,21 @@
   {/if}
 </svelte:head>
 
-<main class="content-index content-index--news" class:content-index--compact={compact}>
+<svelte:element
+  this={compact ? "section" : "main"}
+  class="content-index content-index--news"
+  class:content-index--compact={compact}
+  aria-labelledby="news-index-heading"
+>
   <header class="content-index__heading">
     <p class="content-index__eyebrow">
       {japanese ? "Follow The Bass · ベースミュージック" : "Follow The Bass · Bass music"}
     </p>
-    <h1 class="content-index__title">{title}</h1>
+    <svelte:element
+      this={compact ? "h2" : "h1"}
+      id="news-index-heading"
+      class="content-index__title"
+    >{title}</svelte:element>
     <p class="content-index__intro">{intro}</p>
   </header>
 
@@ -71,7 +80,7 @@
       {japanese ? "ニュースはまだありません。" : "No news yet."}
     </p>
   {/if}
-</main>
+</svelte:element>
 
 <style>
   .news-card__meta {
