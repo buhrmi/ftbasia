@@ -67,7 +67,7 @@
   .site-header-inner {
     display: flex;
     width: 100%;
-    max-width: 48rem;
+    max-width: 79rem;
     min-height: 5.25rem;
     margin-inline: auto;
     align-items: center;
@@ -165,7 +165,7 @@
 
   @media (max-width: 420px) {
     .site-header-inner {
-      padding-inline: 1rem;
+      padding-inline: 1.25rem;
     }
 
     .site-brand__name {
@@ -184,6 +184,12 @@
     .site-nav a {
       font-size: 0.58rem;
       letter-spacing: 0.1em;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .site-header-inner {
+      padding-inline: 1rem;
     }
   }
 </style>
