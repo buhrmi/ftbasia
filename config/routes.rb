@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   get "/shows/far-too-loud", to: redirect("/events/tokyo-bass-conference"), status: :moved_permanently
   get "/events/far-too-loud", to: redirect("/events/tokyo-bass-conference"), status: :moved_permanently
-  get "/artists/stefan", to: redirect("/artists/danangbassman"), status: :moved_permanently
+  get "/artists/danangbassman", to: redirect("/artists/stefan"), status: :moved_permanently
   get "/en/shows/far-too-loud", to: redirect("/en/events/tokyo-bass-conference"), status: :moved_permanently
   get "/en/events/far-too-loud", to: redirect("/en/events/tokyo-bass-conference"), status: :moved_permanently
-  get "/en/artists/stefan", to: redirect("/en/artists/danangbassman"), status: :moved_permanently
+  get "/en/artists/danangbassman", to: redirect("/en/artists/stefan"), status: :moved_permanently
 
   root "home#index", defaults: { locale: "ja" }
   get "/en", to: "home#index", defaults: { locale: "en" }, as: :english_root

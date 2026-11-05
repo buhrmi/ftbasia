@@ -26,7 +26,7 @@ class ContentPagesTest < ActionDispatch::IntegrationTest
 
   test "artist display name is localized without changing its handle" do
     artist = Artist.create!(
-      slug: "danangbassman",
+      slug: "stefan",
       name: "Da Nang Bassman (Stefan)",
       display_name: { en: "ステファン (Stefan)", ja: "ステファン" }
     )
@@ -36,14 +36,24 @@ class ContentPagesTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal "ステファン (Stefan)", inertia_page.dig("props", "artist", "name")
     assert_equal "ステファン (Stefan) — Follow The Bass", inertia_page.dig("props", "meta", "title")
-    assert_equal "danangbassman", inertia_page.dig("props", "artist", "slug")
+    assert_equal "stefan", inertia_page.dig("props", "artist", "slug")
 
     get "/artists/#{artist.slug}"
 
     assert_response :success
     assert_equal "ステファン", inertia_page.dig("props", "artist", "name")
     assert_equal "ステファン — Follow The Bass", inertia_page.dig("props", "meta", "title")
-    assert_equal "danangbassman", inertia_page.dig("props", "artist", "slug")
+    assert_equal "stefan", inertia_page.dig("props", "artist", "slug")
+
+    get "/artists/danangbassman"
+
+    assert_response :moved_permanently
+    assert_redirected_to "/artists/stefan"
+
+    get "/en/artists/danangbassman"
+
+    assert_response :moved_permanently
+    assert_redirected_to "/en/artists/stefan"
   end
 
   private
