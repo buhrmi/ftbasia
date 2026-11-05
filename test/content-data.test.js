@@ -24,16 +24,19 @@ describe("file-backed content", () => {
   test("loads news in both locales with category, links, and artist tags", () => {
     const english = getNewsForIndex("en");
     const japanese = getNewsForIndex("ja");
-    expect(english).toHaveLength(5);
-    expect(japanese).toHaveLength(5);
+    expect(english).toHaveLength(6);
+    expect(japanese).toHaveLength(6);
     expect(english.map((article) => article.category)).toEqual([
+      "event",
       "event",
       "announcement",
       "release",
       "interview",
       "release"
     ]);
-    expect(english[0].slug).toBe("06s-25th-anniversary-at-womb");
+    expect(english.map((article) => article.slug)).toContain(
+      "bass2face-thursday-clash-chamba-da-nang"
+    );
 
     const interview = getNews("en", "stefan-opens-up-after-8-years-in-tokyo");
     expect(interview?.tags.map(({ type, slug }) => ({ type, slug }))).toEqual([
@@ -62,6 +65,31 @@ describe("file-backed content", () => {
     expect(existsSync(join(contentDirectory, `news/${slug}/og.png`))).toBe(true);
   });
 
+  test("includes the Bass2Face event, researched Chamba tag, and flyer", () => {
+    const slug = "bass2face-thursday-clash-chamba-da-nang";
+    const english = getNews("en", slug);
+    const japanese = getNews("ja", slug);
+    const chamba = getProfile("artist", "chamba", "en");
+    const englishContent = readFileSync(join(contentDirectory, `news/${slug}/en.md`), "utf8");
+    const japaneseContent = readFileSync(join(contentDirectory, `news/${slug}/ja.md`), "utf8");
+
+    expect(english?.category).toBe("event");
+    expect(english?.published_at).toBe("2026-11-05");
+    expect(english?.tags.map(({ slug: artistSlug }) => artistSlug)).toEqual(["chamba"]);
+    expect(japanese?.tags.map(({ slug: artistSlug }) => artistSlug)).toEqual(["chamba"]);
+    expect(chamba?.name).toBe("CHAMBA");
+    expect(chamba?.bio).toContain("UKF label spotlight");
+    expect(chamba?.sources.some(({ url }) => url === "https://ukf.com/read/label-spotlight-yamatai/")).toBe(
+      true
+    );
+    expect(englishContent).toContain("Thursday, November 5");
+    expect(englishContent).toContain("https://likdo.asia/event/3082/");
+    expect(englishContent).toContain("100,000 VND presale");
+    expect(japaneseContent).toContain("11月5日（木）");
+    expect(japaneseContent).toContain("https://likdo.asia/event/3082/");
+    expect(existsSync(join(contentDirectory, `news/${slug}/og.png`))).toBe(true);
+  });
+
   test("localizes artist profiles and media", () => {
     const stefan = getProfile("artist", "danangbassman", "ja");
     expect(stefan?.role).toBe("アーティスト・創設者");
@@ -79,7 +107,7 @@ describe("file-backed content", () => {
   test("lists artists with localized profile URLs", () => {
     const english = getArtistIndex("en");
     const japanese = getArtistIndex("ja");
-    expect(english).toHaveLength(5);
+    expect(english).toHaveLength(6);
     expect(english.map(({ slug }) => slug)).toContain("danangbassman");
     expect(english.find(({ slug }) => slug === "danangbassman")?.url).toBe(
       "/en/artists/danangbassman"
