@@ -17,7 +17,7 @@
       <h1 id="home-title" class="sr-only">Follow The Bass</h1>
       <img class="home-hero__logo" src="/logo.png" alt="" fetchpriority="high" />
       <p class="home-hero__tagline">
-        {japanese ? "東京を拠点に、ベースミュージックカルチャーを発信。" : "Bass music culture in Tokyo and beyond."}
+        Bass music culture in Tokyo and beyond.
       </p>
       <ul class="home-hero__genres" aria-label={japanese ? "ジャンル" : "Genres"}>
         {#each genres as genre (genre)}<li class="genre-badge genre-badge--{genre === "Drum & Bass" ? "dnb" : genre.toLowerCase()}">{genre}</li>{/each}
