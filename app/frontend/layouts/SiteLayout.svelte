@@ -52,6 +52,14 @@
     <a class="text-xs text-neutral-500 underline underline-offset-4" href="https://github.com/buhrmi/ftbasia">
       {japanese ? "Follow The Bassのウェブサイトはオープンソースです。" : "The Follow The Bass website is open source."}
     </a>
-    <p class="text-[11px] tracking-[0.25em] text-neutral-500 uppercase">&copy; Follow The Bass</p>
+    <div class="flex items-center gap-5">
+      <a
+        class="text-xs text-neutral-500 hover:text-white"
+        href="https://www.instagram.com/ftbasia"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Instagram</a>
+      <p class="text-[11px] tracking-[0.25em] text-neutral-500 uppercase">&copy; Follow The Bass</p>
+    </div>
   </div>
 </footer>
