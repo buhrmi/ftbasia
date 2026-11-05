@@ -5,7 +5,7 @@ published_at: 2026-10-30
 category: interview
 tags:
   - type: artist
-    slug: danangbassman
+    slug: stefan
 ---
 After more than eight years in Tokyo, Follow The Bass founder **Stefan** reflects on the work behind the events, difficult experiences that shaped him, and the ideas guiding this new chapter.
 
@@ -13,7 +13,7 @@ In 2014, Stefan founded **New Sound For Japan**, a project that brought internat
 
 We spoke with Stefan about his early work, what he is bringing into this new chapter, and the kind of music community he hopes to build.
 
-For more on Stefan's profile and work, see his [artist page](/en/artists/danangbassman).
+For more on Stefan's profile and work, see his [artist page](/en/artists/stefan).
 
 ---
 

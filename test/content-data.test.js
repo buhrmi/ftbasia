@@ -41,7 +41,7 @@ describe("file-backed content", () => {
 
     const interview = getNews("en", "stefan-opens-up-after-8-years-in-tokyo");
     expect(interview?.tags.map(({ type, slug }) => ({ type, slug }))).toEqual([
-      { type: "artist", slug: "danangbassman" }
+      { type: "artist", slug: "stefan" }
     ]);
     expect(interview?.url).toBe("/en/news/stefan-opens-up-after-8-years-in-tokyo");
   });
@@ -114,8 +114,8 @@ describe("file-backed content", () => {
   });
 
   test("localizes artist profiles and media", () => {
-    const stefan = getProfile("artist", "danangbassman", "ja");
-    const stefanEnglish = getProfile("artist", "danangbassman", "en");
+    const stefan = getProfile("artist", "stefan", "ja");
+    const stefanEnglish = getProfile("artist", "stefan", "en");
     expect(stefan?.name).toBe("ステファン");
     expect(stefanEnglish?.name).toBe("ステファン (Stefan)");
     expect(stefan?.role).toBe("アーティスト・創設者");
@@ -127,10 +127,10 @@ describe("file-backed content", () => {
     );
     expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
-    expect(getProfile("artist", "danangbassman", "en")?.bio).toContain("former web developer");
-    expect(stefan?.slug).toBe("danangbassman");
-    expect(stefanEnglish?.slug).toBe("danangbassman");
-    expect(getProfile("artist", "stefan", "en")).toBeUndefined();
+    expect(getProfile("artist", "stefan", "en")?.bio).toContain("former web developer");
+    expect(stefan?.slug).toBe("stefan");
+    expect(stefanEnglish?.slug).toBe("stefan");
+    expect(getProfile("artist", "danangbassman", "en")).toBeUndefined();
     expect(getProfile("artist", "allen-mock", "en")?.links[0].url).toBe(
       "https://allenmock.bandcamp.com/"
     );
@@ -140,12 +140,12 @@ describe("file-backed content", () => {
     const english = getArtistIndex("en");
     const japanese = getArtistIndex("ja");
     expect(english).toHaveLength(6);
-    expect(english.map(({ slug }) => slug)).toContain("danangbassman");
-    expect(english.find(({ slug }) => slug === "danangbassman")?.url).toBe(
-      "/en/artists/danangbassman"
+    expect(english.map(({ slug }) => slug)).toContain("stefan");
+    expect(english.find(({ slug }) => slug === "stefan")?.url).toBe(
+      "/en/artists/stefan"
     );
-    expect(japanese.find(({ slug }) => slug === "danangbassman")?.url).toBe(
-      "/artists/danangbassman"
+    expect(japanese.find(({ slug }) => slug === "stefan")?.url).toBe(
+      "/artists/stefan"
     );
   });
 
@@ -174,7 +174,7 @@ describe("file-backed content", () => {
     expect(event?.work[0].title).toBe("ブッキング");
     expect(event?.flyer).toBe("2016-far-too-loud.jpg");
     expect(event?.links[0].url).toBe("https://www.facebook.com/TokyoBassMusic/");
-    expect(getTaggedNews("artist", "danangbassman", "en")).toHaveLength(1);
+    expect(getTaggedNews("artist", "stefan", "en")).toHaveLength(1);
     expect(getProfile("event", "tokyo-bass-conference", "en")?.description).toContain(
       "booking process"
     );

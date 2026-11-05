@@ -32,11 +32,11 @@ to = "/en/events/tokyo-bass-conference"
 status = 301
 
 [[redirects]]
-from = "/artists/stefan"
-to = "/artists/danangbassman"
+from = "/artists/danangbassman"
+to = "/artists/stefan"
 status = 301
 
 [[redirects]]
-from = "/en/artists/stefan"
-to = "/en/artists/danangbassman"
+from = "/en/artists/danangbassman"
+to = "/en/artists/stefan"
 status = 301
