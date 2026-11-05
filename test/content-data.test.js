@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, test } from "bun:test";
 import { fileURLToPath } from "node:url";
@@ -24,21 +24,42 @@ describe("file-backed content", () => {
   test("loads news in both locales with category, links, and artist tags", () => {
     const english = getNewsForIndex("en");
     const japanese = getNewsForIndex("ja");
-    expect(english).toHaveLength(4);
-    expect(japanese).toHaveLength(4);
+    expect(english).toHaveLength(5);
+    expect(japanese).toHaveLength(5);
     expect(english.map((article) => article.category)).toEqual([
+      "event",
       "announcement",
       "release",
       "interview",
       "release"
     ]);
-    expect(english[0].slug).toBe("follow-the-bass-launches-in-vietnam");
+    expect(english[0].slug).toBe("06s-25th-anniversary-at-womb");
 
     const interview = getNews("en", "stefan-opens-up-after-8-years-in-tokyo");
     expect(interview?.tags.map(({ type, slug }) => ({ type, slug }))).toEqual([
       { type: "artist", slug: "danangbassman" }
     ]);
     expect(interview?.url).toBe("/en/news/stefan-opens-up-after-8-years-in-tokyo");
+  });
+
+  test("includes the 06S anniversary flyer, lineup, and ticket link", () => {
+    const slug = "06s-25th-anniversary-at-womb";
+    const english = getNews("en", slug);
+    const japanese = getNews("ja", slug);
+    const englishContent = readFileSync(join(contentDirectory, `news/${slug}/en.md`), "utf8");
+    const japaneseContent = readFileSync(join(contentDirectory, `news/${slug}/ja.md`), "utf8");
+
+    expect(english?.category).toBe("event");
+    expect(english?.published_at).toBe("2026-11-05");
+    expect(english?.tags.map(({ slug: artistSlug }) => artistSlug)).toEqual(["dj-aki", "yellock"]);
+    expect(japanese?.category).toBe("event");
+    expect(englishContent).toContain("Friday, November 6, 2026");
+    expect(englishContent).toContain("https://womb.zaiko.io/en/e/womb110626");
+    expect(englishContent).toContain("Friction");
+    expect(englishContent).toContain("DJ AKi");
+    expect(japaneseContent).toContain("2026年11月6日（金）");
+    expect(japaneseContent).toContain("https://womb.zaiko.io/en/e/womb110626");
+    expect(existsSync(join(contentDirectory, `news/${slug}/og.png`))).toBe(true);
   });
 
   test("localizes artist profiles and media", () => {

@@ -10,6 +10,9 @@
   const announcementPhoto = $derived(
     slug === "follow-the-bass-launches-in-vietnam" ? preview : undefined
   );
+  const eventFlyer = $derived(
+    slug === "06s-25th-anniversary-at-womb" ? preview : undefined
+  );
 </script>
 
 <svelte:head>
@@ -44,6 +47,16 @@
         <h1>{news.title}</h1>
         <EntityTags tags={news.tags} {locale} />
       </header>
+      {#if eventFlyer}
+        <figure class="news-photo">
+          <img
+            src={eventFlyer}
+            alt={locale === "ja" ? "06S 25周年イベントのフライヤー" : "Flyer for the 06S 25th anniversary event"}
+            loading="lazy"
+          />
+          <figcaption>{locale === "ja" ? "06S 25周年 — WOMB、2026年11月6日" : "06S 25th Anniversary at WOMB · November 6, 2026"}</figcaption>
+        </figure>
+      {/if}
       {#if announcementPhoto}
         <figure class="news-photo">
           <img src={announcementPhoto} alt="Stefan, founder, with Tony, accountant" loading="lazy" />
