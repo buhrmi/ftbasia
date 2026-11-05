@@ -1,7 +1,6 @@
 <script>
   import "@fontsource/montserrat/300.css";
-  import "@fontsource/montserrat/700.css";
-  import heroImage from "~/content/artists/danangbassman.jpg";
+  import logo from "~/assets/logo.png";
   import NewsIndex from "~/pages/news/index.svelte";
   import PageMeta from "~/shared/PageMeta.svelte";
 
@@ -9,69 +8,33 @@
 
   const japanese = $derived(data.locale === "ja");
   const localePrefix = $derived(japanese ? "" : "/en");
-  const genres = ["Drum & Bass", "Dubstep", "Trap", "Hardstyle"];
+  const genres = [
+    { name: "Drum & Bass", style: "dnb" },
+    { name: "Dubstep", style: "dubstep" },
+    { name: "Trap", style: "trap" },
+    { name: "Hardstyle", style: "hardstyle" }
+  ];
 </script>
 
 <PageMeta meta={data.meta} />
 
 <main class="home-page">
-  <section class="home-hero" class:home-hero--ja={japanese} aria-labelledby="home-tagline">
-    <div class="home-hero__image" aria-hidden="true">
-      <img src={heroImage} alt="" fetchpriority="high" />
-    </div>
-    <div class="home-hero__content">
-      <p class="home-hero__eyebrow">
-        <span class="home-hero__signal" aria-hidden="true"></span>
-        {japanese ? "ベースミュージックのニュースとカルチャー" : "Bass music news & culture"}
-        <span class="home-hero__since">{japanese ? "東京 · ダナン" : "Tokyo · Da Nang"}</span>
-      </p>
-      <h1 id="home-tagline">
-        {#if japanese}
-          <span>東京から、</span>
-          <em>ベースのその先へ。</em>
-        {:else}
-          <span>Tokyo roots.</span>
-          <em>Bass beyond.</em>
-        {/if}
-      </h1>
-      <p class="home-hero__intro">
-        {japanese
-          ? "2014年から、東京・ダナンをはじめ各地のベースミュージックニュースとアーティスト情報を発信。"
-          : "Bass music news and artist features since 2014. From Tokyo to Da Nang, and beyond."}
-      </p>
-      <div class="home-hero__actions">
-        <a class="home-hero__primary" href={`${localePrefix}/artists`}>
-          {japanese ? "注目アーティスト" : "Featured artists"}
-          <span aria-hidden="true">↗</span>
-        </a>
-        <a class="home-hero__secondary" href={`${localePrefix}/news`}>
-          {japanese ? "最新ニュース" : "Latest stories"}
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
-    </div>
-    <p class="home-hero__caption">
-      <span>MY KHE BEACH</span>
-      <span>DA NANG, VIETNAM</span>
+  <section class="home-hero" aria-labelledby="home-title">
+    <h1 id="home-title" class="home-hero__title">Follow The Bass</h1>
+    <img class="home-hero__logo" src={logo} alt="" fetchpriority="high" />
+    <p class="home-hero__tagline">
+      {japanese ? "東京を拠点に、ベースミュージックカルチャーを発信。" : "Bass music culture in Tokyo and beyond."}
     </p>
-    <span class="home-hero__index" aria-hidden="true">EST. 2014</span>
-  </section>
-
-  <section class="home-genres" aria-label={japanese ? "ジャンル" : "Genres"}>
-    <div class="home-genres__inner">
-      <p>{japanese ? "取り上げるジャンル" : "GENRES COVERED"}</p>
-      <ul>
-        {#each genres as genre (genre)}
-          <li>{genre}</li>
-        {/each}
-      </ul>
-    </div>
+    <ul class="home-hero__genres" aria-label={japanese ? "ジャンル" : "Genres"}>
+      {#each genres as genre (genre.name)}
+        <li class="genre-badge genre-badge--{genre.style}">{genre.name}</li>
+      {/each}
+    </ul>
   </section>
 
   <section class="upcoming-events" aria-labelledby="upcoming-events-heading">
     <div class="upcoming-events__heading">
       <div>
-        <p class="home-section__eyebrow">{japanese ? "次のベースライン" : "THE NEXT BASELINE"}</p>
         <h2 id="upcoming-events-heading">{japanese ? "今後のイベント" : "Upcoming events"}</h2>
       </div>
       <a href={`${localePrefix}/events`}>
@@ -112,233 +75,92 @@
     position: relative;
     display: flex;
     width: 100vw;
-    min-height: min(48rem, max(37rem, calc(100svh - 5.25rem)));
-    align-items: flex-end;
-    overflow: hidden;
-    margin-inline: calc(50% - 50vw);
-    background: #080909;
-    isolation: isolate;
-  }
-
-  .home-hero__image,
-  .home-hero__image::after {
-    position: absolute;
-    inset: 0;
-  }
-
-  .home-hero__image {
-    z-index: -2;
-  }
-
-  .home-hero__image::after {
-    background:
-      linear-gradient(90deg, rgb(5 7 9 / 94%) 0%, rgb(5 7 9 / 78%) 34%, rgb(5 7 9 / 12%) 100%),
-      linear-gradient(0deg, #080909 0%, rgb(8 9 9 / 65%) 16%, transparent 58%),
-      linear-gradient(180deg, rgb(8 9 9 / 38%), transparent 26%);
-    content: "";
-  }
-
-  .home-hero__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 54%;
-    filter: brightness(0.82) saturate(0.82);
-  }
-
-  .home-hero::before {
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    background: radial-gradient(ellipse at 73% 50%, rgb(201 239 106 / 12%), transparent 40%);
-    content: "";
-    pointer-events: none;
-  }
-
-  .home-hero__content {
-    width: min(76rem, calc(100% - 3rem));
-    margin: 0 auto;
-    padding-block: 7rem 7.5rem;
-  }
-
-  .home-hero__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    margin: 0 0 1.5rem;
-    color: #e5e5e5;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .home-hero__signal,
-  .upcoming-events__signal {
-    width: 0.5rem;
-    height: 0.5rem;
-    flex: 0 0 auto;
-    border-radius: 50%;
-    background: #d7f58c;
-    box-shadow: 0 0 1.1rem rgb(215 245 140 / 70%);
-  }
-
-  .home-hero__since {
-    margin-left: 0.6rem;
-    color: rgb(255 255 255 / 62%);
-  }
-
-  .home-hero h1 {
-    max-width: none;
-    margin: 0;
-    font-family: "Montserrat", sans-serif;
-    font-size: clamp(3.75rem, 9vw, 7.5rem);
-    font-weight: 700;
-    letter-spacing: -0.085em;
-    line-height: 0.91;
-  }
-
-  .home-hero h1 span,
-  .home-hero h1 em {
-    display: block;
-  }
-
-  .home-hero--ja h1 {
-    letter-spacing: -0.045em;
-  }
-
-  .home-hero h1 em {
-    color: #d7f58c;
-    font-style: normal;
-  }
-
-  .home-hero__intro {
-    max-width: 33rem;
-    margin: 1.5rem 0 0;
-    color: rgb(255 255 255 / 76%);
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-    line-height: 1.7;
-  }
-
-  .home-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .home-hero__primary,
-  .home-hero__secondary {
-    display: inline-flex;
+    min-height: min(28rem, max(20rem, calc(100svh - 5.25rem)));
     align-items: center;
     justify-content: center;
-    gap: 0.8rem;
-    text-decoration: none;
-    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-  }
-
-  .home-hero__primary {
-    min-height: 3.25rem;
-    border-radius: 9999px;
-    background: #d7f58c;
-    padding: 0.75rem 1.25rem;
-    color: #111;
-    font-size: 0.8rem;
-    font-weight: 700;
-  }
-
-  .home-hero__primary:hover {
-    transform: translateY(-2px);
-    background: #e5ffab;
-  }
-
-  .home-hero__secondary {
-    min-height: 3rem;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-
-  .home-hero__secondary:hover {
-    color: #d7f58c;
-  }
-
-  .home-hero__primary:focus-visible,
-  .home-hero__secondary:focus-visible {
-    outline: 2px solid white;
-    outline-offset: 4px;
-  }
-
-  .home-hero__caption {
-    position: absolute;
-    right: max(1.5rem, calc((100vw - 76rem) / 2));
-    bottom: 2.25rem;
-    display: flex;
     flex-direction: column;
-    gap: 0.25rem;
-    margin: 0;
-    color: rgb(255 255 255 / 76%);
-    font-size: 0.58rem;
-    letter-spacing: 0.16em;
-    text-align: right;
-  }
-
-  .home-hero__caption span:first-child {
-    color: #d7f58c;
-  }
-
-  .home-hero__index {
-    position: absolute;
-    bottom: 2.25rem;
-    left: max(1.5rem, calc((100vw - 76rem) / 2));
-    color: rgb(255 255 255 / 58%);
-    font-size: 0.58rem;
-    letter-spacing: 0.18em;
-  }
-
-  .home-genres {
-    width: 100vw;
+    gap: 1.15rem;
+    overflow: hidden;
     margin-inline: calc(50% - 50vw);
-    border-block: 1px solid rgb(255 255 255 / 9%);
-    background: #0b0c0b;
+    background: #000;
   }
 
-  .home-genres__inner {
-    display: flex;
-    width: min(76rem, calc(100% - 3rem));
-    min-height: 5.25rem;
-    margin-inline: auto;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
+  .home-hero__title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
   }
 
-  .home-genres__inner > p,
-  .home-section__eyebrow {
+  .home-hero__logo {
+    width: min(19rem, 75vw);
+    height: auto;
+    object-fit: contain;
+  }
+
+  .home-hero__tagline {
     margin: 0;
-    color: #a3a3a3;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.17em;
-    text-transform: uppercase;
+    color: #f0ede7;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: -2rem;
   }
 
-  .home-genres ul {
+  .home-hero__genres {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.7rem 1.75rem;
+    justify-content: center;
+    gap: 0.6rem;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .home-genres li {
-    color: #e5e5e5;
-    font-size: 0.7rem;
+  .genre-badge {
+        font-family: "Montserrat", sans-serif;
+    border-radius: 9999px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
+  }
+
+  .genre-badge--dnb {
+    border: 1px solid rgb(201 239 106 / 50%);
+    background: rgb(201 239 106 / 12%);
+    color: #d7f58c;
+  }
+
+  .genre-badge--dubstep {
+    border: 1px solid rgb(184 147 255 / 50%);
+    background: rgb(184 147 255 / 12%);
+    color: #cfb5ff;
+  }
+
+  .genre-badge--trap {
+    border: 1px solid rgb(255 151 121 / 50%);
+    background: rgb(255 151 121 / 12%);
+    color: #ffb09a;
+  }
+
+  .genre-badge--hardstyle {
+    border: 1px solid rgb(111 216 235 / 50%);
+    background: rgb(111 216 235 / 12%);
+    color: #9ce8f5;
+  }
+
+  @media (max-width: 420px) {
+    .home-hero__genres {
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      gap: 0.5rem;
+    }
   }
 
   .upcoming-events {
@@ -351,11 +173,6 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 1rem;
-  }
-
-  .home-section__eyebrow {
-    margin-bottom: 0.65rem;
-    color: #b8d978;
   }
 
   .upcoming-events h2 {
@@ -397,6 +214,15 @@
     border-radius: 0.65rem;
     background: linear-gradient(110deg, rgb(255 255 255 / 4%), rgb(255 255 255 / 1%));
     padding: 1rem;
+  }
+
+  .upcoming-events__signal {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #d7f58c;
+    box-shadow: 0 0 1.1rem rgb(215 245 140 / 70%);
   }
 
   .upcoming-events__empty p {
@@ -458,79 +284,6 @@
   }
 
   @media (max-width: 640px) {
-    .home-hero {
-      min-height: min(48rem, max(39rem, calc(100svh - 5.25rem)));
-    }
-
-    .home-hero__image img {
-      object-position: 58% center;
-    }
-
-    .home-hero__image::after {
-      background:
-        linear-gradient(90deg, rgb(5 7 9 / 78%), rgb(5 7 9 / 38%) 72%, rgb(5 7 9 / 16%)),
-        linear-gradient(0deg, #080909 0%, rgb(8 9 9 / 76%) 22%, transparent 72%),
-        linear-gradient(180deg, rgb(8 9 9 / 40%), transparent 24%);
-    }
-
-    .home-hero__content {
-      width: calc(100% - 2.5rem);
-      padding-block: 6rem 8rem;
-    }
-
-    .home-hero__eyebrow {
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      font-size: 0.58rem;
-    }
-
-    .home-hero__since {
-      margin-left: 0.25rem;
-    }
-
-    .home-hero h1 {
-      max-width: 100%;
-      font-size: clamp(3.45rem, 12vw, 5rem);
-    }
-
-    .home-hero h1 span,
-    .home-hero h1 em {
-      white-space: normal;
-    }
-
-    .home-hero__intro {
-      max-width: 27rem;
-      font-size: 0.9rem;
-    }
-
-    .home-hero__caption {
-      right: 1.25rem;
-      bottom: 1.5rem;
-    }
-
-    .home-hero__index {
-      bottom: 1.5rem;
-      left: 1.25rem;
-    }
-
-    .home-genres__inner {
-      width: calc(100% - 2.5rem);
-      min-height: 6rem;
-      align-items: flex-start;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.7rem;
-    }
-
-    .home-genres ul {
-      justify-content: flex-start;
-      gap: 0.65rem 1.15rem;
-    }
-
-    .home-genres li {
-      font-size: 0.65rem;
-    }
-
     .upcoming-events {
       padding-block: 2.5rem 1.5rem;
     }
@@ -545,22 +298,6 @@
   }
 
   @media (max-width: 380px) {
-    .home-hero__content {
-      width: calc(100% - 2rem);
-    }
-
-    .home-hero h1 {
-      font-size: clamp(3rem, 12vw, 3.45rem);
-    }
-
-    .home-hero__actions {
-      gap: 0.5rem 1rem;
-    }
-
-    .home-hero__primary {
-      padding-inline: 1rem;
-    }
-
     .upcoming-events__heading {
       align-items: flex-start;
       flex-direction: column;
@@ -569,8 +306,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .home-hero__primary,
-    .home-hero__secondary,
     .upcoming-events__heading a,
     .venue-cta a {
       transition: none;
