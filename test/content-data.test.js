@@ -121,6 +121,10 @@ describe("file-backed content", () => {
     expect(stefan?.role).toBe("アーティスト・創設者");
     expect(stefan?.bio).toContain("ウェブ開発者");
     expect(stefan?.links.some(({ url }) => url === "https://github.com/buhrmi")).toBe(true);
+    expect(stefan?.links.some(({ url }) => url === "https://x.com/stefankatakana")).toBe(true);
+    expect(stefan?.links.some(({ url }) => url === "https://www.instagram.com/stefankatakana")).toBe(
+      true
+    );
     expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
     expect(getProfile("artist", "danangbassman", "en")?.bio).toContain("former web developer");
