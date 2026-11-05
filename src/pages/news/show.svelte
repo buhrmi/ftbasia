@@ -60,7 +60,7 @@
           <img src={announcementPhoto} alt="Stefan, founder, with Tony, accountant" loading="lazy" />
           <figcaption>
             <a href={locale === "ja" ? "/artists/stefan" : "/en/artists/stefan"}>
-              Stefan (@danangbassman)
+              {locale === "ja" ? "ステファン" : "Stefan"} (@danangbassman)
             </a>
           </figcaption>
         </figure>

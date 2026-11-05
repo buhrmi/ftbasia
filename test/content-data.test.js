@@ -120,6 +120,10 @@ describe("file-backed content", () => {
     expect(stefanEnglish?.name).toBe("ステファン (Stefan)");
     expect(stefan?.role).toBe("アーティスト・創設者");
     expect(stefan?.bio).toContain("ウェブ開発者");
+    expect(stefan?.bio).not.toContain("Stefan");
+    expect(stefan?.media.some(({ alt, caption }) => `${alt} ${caption ?? ""}`.includes("Stefan"))).toBe(
+      false
+    );
     expect(stefan?.links.some(({ url }) => url === "https://github.com/buhrmi")).toBe(true);
     expect(stefan?.links.some(({ url }) => url === "https://x.com/stefankatakana")).toBe(true);
     expect(stefan?.links.some(({ url }) => url === "https://www.instagram.com/stefankatakana")).toBe(
@@ -162,6 +166,7 @@ describe("file-backed content", () => {
     expect(english).toContain("Tokyo Bass Music");
     expect(english).toContain("live on Twitch");
     expect(japanese).toContain("New Sound For Japan");
+    expect(japanese).not.toContain("Stefan");
     expect(japanese).toContain("Tokyo Bass Music");
     expect(japanese).toContain("Twitchでライブ配信");
   });

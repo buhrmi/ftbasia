@@ -10,7 +10,7 @@
     ...item,
     ...(item.asset ? { src: profileAsset("artists", item.asset) } : {})
   })));
-  const mediaLabel = $derived(locale === "ja" ? "Stefanの写真と動画" : "Photos and videos of Stefan");
+  const mediaLabel = $derived(locale === "ja" ? "ステファンの写真と動画" : "Photos and videos of Stefan");
   const fullscreenLabel = $derived(locale === "ja" ? "全画面表示" : "Fullscreen");
   const closeLabel = $derived(locale === "ja" ? "閉じる" : "Close");
   const ofLabel = $derived(locale === "ja" ? "/" : "of");

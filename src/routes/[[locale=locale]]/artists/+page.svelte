@@ -9,7 +9,7 @@
 
 <PageMeta meta={data.meta} />
 
-<main class="content-index content-index--artists">
+<main class="content-index content-index--artists content-index--full">
   <header class="content-index__heading">
     <p class="content-index__eyebrow">{japanese ? "Follow The Bass · ベースミュージック" : "Follow The Bass · Bass music"}</p>
     <h1 class="content-index__title">{japanese ? "アーティスト" : "Artists"}</h1>

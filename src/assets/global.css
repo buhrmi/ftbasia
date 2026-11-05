@@ -14,6 +14,21 @@ body {
   padding-block: 2rem 4rem;
 }
 
+.content-index--full {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+}
+
+.content-index--full .content-index__grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 0;
+}
+
+.content-index--full .content-index__card-link {
+  border-radius: 0;
+}
+
 .content-index__heading {
   max-width: 38rem;
   margin-bottom: 2rem;
