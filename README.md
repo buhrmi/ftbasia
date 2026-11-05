@@ -1,37 +1,52 @@
 # Follow The Bass
 
-The site is a SvelteKit application deployed to Netlify. Artist and event
-details are read from YAML files; news articles are Markdown files with YAML
-front matter. No database or Rails runtime is required.
+Follow The Bass is a bilingual (Japanese and English) Rails application with
+Svelte pages powered by Inertia. Content is stored in SQLite and managed through
+Active Record; uploaded media uses Active Storage.
+
+## Requirements
+
+- Ruby 4.0+
+- Node.js 20+
+- SQLite 3
 
 ## Development
 
-Install [Bun](https://bun.sh/), then run:
+Install the Ruby and JavaScript dependencies, prepare the database, and start
+Rails and Vite together:
 
 ```sh
-bun install
-bun run dev
+bundle install
+npm install
+bin/rails db:prepare
+bin/rails db:seed
+bin/dev
 ```
 
-The development server is available at `http://localhost:5173`. Japanese is the
-default locale (`/news`); English pages use `/en` (`/en/news`).
+The site is available at `http://localhost:3000`. Japanese is the default
+locale, and English pages use the `/en` prefix.
 
-## Verification and deployment
+## Content and media
+
+Run `bin/rails db:seed` to import the initial content from
+[`db/seeds/content.json`](db/seeds/content.json) and its referenced files in
+`db/seeds/assets/`. The seed task is safe to rerun. Future content should be
+created through Active Record or an editorial interface rather than editing
+the original SvelteKit YAML and Markdown files.
+
+Images, flyers, and videos are attached with Active Storage. Local development
+stores files under `storage/`; deploy with a persistent disk or configure a
+remote Active Storage service for production. Localized `alt_text` and
+`caption`, along with credit and ordering metadata, are stored on the
+`active_storage_attachments` records.
+
+## Checks
 
 ```sh
-bun test
-bun run build
+npm test
+npm run build
 ```
 
-Netlify uses the SvelteKit Netlify adapter and the settings in `netlify.toml`.
-Connect the repository to Netlify and it will install dependencies, run the
-build, and publish the generated site and serverless function. The content files
-are included with the function so YAML-backed routes work at runtime.
-
-## Content
-
-- `src/content/artists/*.yml`
-- `src/content/events/*.yml`
-- `src/content/news/<slug>/<locale>.md`
-
-Markdown news files may include a preview image in their article directory.
+`npm test` runs the Rails test suite. Before deploying, run migrations with
+`bin/rails db:migrate` and ensure the production database and Active Storage
+files use persistent storage.
