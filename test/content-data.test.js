@@ -115,12 +115,17 @@ describe("file-backed content", () => {
 
   test("localizes artist profiles and media", () => {
     const stefan = getProfile("artist", "danangbassman", "ja");
+    const stefanEnglish = getProfile("artist", "danangbassman", "en");
+    expect(stefan?.name).toBe("ステファン");
+    expect(stefanEnglish?.name).toBe("ステファン (Stefan)");
     expect(stefan?.role).toBe("アーティスト・創設者");
     expect(stefan?.bio).toContain("ウェブ開発者");
     expect(stefan?.links.some(({ url }) => url === "https://github.com/buhrmi")).toBe(true);
     expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
     expect(getProfile("artist", "danangbassman", "en")?.bio).toContain("former web developer");
+    expect(stefan?.slug).toBe("danangbassman");
+    expect(stefanEnglish?.slug).toBe("danangbassman");
     expect(getProfile("artist", "stefan", "en")).toBeUndefined();
     expect(getProfile("artist", "allen-mock", "en")?.links[0].url).toBe(
       "https://allenmock.bandcamp.com/"

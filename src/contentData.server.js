@@ -174,8 +174,8 @@ export function getProfile(type, slug, locale) {
   if (!record) return;
 
   const { data } = record;
-  const name = String(data.name ?? "");
-  if (!name.trim()) throw new Error(`Profile name cannot be blank: ${slug}`);
+  const name = localizedText(data.name, locale);
+  if (!name?.trim()) throw new Error(`Profile name cannot be blank: ${slug}`);
   const textFields = ["role", "location", "tagline"];
   for (const key of textFields) {
     if (
