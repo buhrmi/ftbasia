@@ -1,4 +1,5 @@
 import {
+  getUpcomingEvents,
   getNewsForIndex,
   pageMeta
 } from "~/contentData.server.js";
@@ -9,6 +10,7 @@ export function load({ params, url }) {
   const locale = params.locale ?? "ja";
   return {
     locale,
+    events: getUpcomingEvents(locale),
     news: getNewsForIndex(locale),
     meta: pageMeta({
       title: "Follow The Bass",

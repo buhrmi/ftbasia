@@ -10,8 +10,8 @@
     profile.starts_at
       ? new Intl.DateTimeFormat(locale, {
           dateStyle: "long",
-          timeStyle: "short",
-          timeZone: "Asia/Tokyo"
+          ...(/^\d{4}-\d{2}-\d{2}$/.test(profile.starts_at) ? {} : { timeStyle: "short" }),
+          timeZone: profile.timezone ?? "Asia/Tokyo"
         }).format(new Date(profile.starts_at))
       : undefined
   );

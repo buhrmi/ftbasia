@@ -1,0 +1,38 @@
+name: "Thursday Clash: UK Takeover"
+location:
+  en: BRIX Club, Corner Village, Da Nang, Vietnam
+  ja: BRIX Club（ベトナム・ダナン、Corner Village）
+bio:
+  en: Bass2Face and Exodus Records bring a UK-focused night of bass music to Da Nang.
+  ja: Bass2FaceとExodus RecordsがダナンでUKベースミュージックのイベントを開催します。
+kind:
+  en: UK takeover
+  ja: UKテイクオーバー
+starts_at: "2026-11-05T22:00:00+07:00"
+timezone: Asia/Ho_Chi_Minh
+description:
+  en: Thursday Clash runs from 10 pm to 6 am and features drum & bass, UK garage, dubstep and jungle. Presale tickets are 100,000 VND; tickets at the door are 200,000 VND.
+  ja: 「Thursday Clash」は午後10時から翌朝6時まで開催。ドラムンベース、UKガラージ、ダブステップ、ジャングルを中心としたイベントです。前売りは100,000 VND、当日券は200,000 VNDです。
+performers:
+  en:
+    - CHAMBA
+    - KARNI
+    - FRIENDS IN THE DANCE
+    - EZOR
+    - JAKART
+    - IVAX
+    - RED
+  ja:
+    - CHAMBA
+    - KARNI
+    - FRIENDS IN THE DANCE
+    - EZOR
+    - JAKART
+    - IVAX
+    - RED
+links:
+  - label: Likdo tickets
+    url: https://likdo.asia/event/3082/
+  - label: Bass2Face on Facebook
+    url: https://www.facebook.com/bass2face.asia/
+flyer: bass2face-thursday-clash-chamba-da-nang.png

@@ -4,6 +4,8 @@ description: 11月5日、Bass2FaceとExodus Recordsによる「Thursday Clash」
 published_at: 2026-11-05
 category: event
 tags:
+  - type: event
+    slug: bass2face-thursday-clash-chamba-da-nang
   - type: artist
     slug: chamba
 ---

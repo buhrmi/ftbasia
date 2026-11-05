@@ -4,6 +4,8 @@ description: 06S marks its 25th anniversary at WOMB in Tokyo on November 6, 2026
 published_at: 2026-11-05
 category: event
 tags:
+  - type: event
+    slug: 06s-25th-anniversary-at-womb
   - type: artist
     slug: dj-aki
   - type: artist

@@ -4,6 +4,8 @@ description: 2026年11月6日、東京・WOMBで開催される06Sの25周年イ
 published_at: 2026-11-05
 category: event
 tags:
+  - type: event
+    slug: 06s-25th-anniversary-at-womb
   - type: artist
     slug: dj-aki
   - type: artist

@@ -7,6 +7,7 @@ import {
   getNewsForIndex,
   getArtistIndex,
   getPastEvents,
+  getUpcomingEvents,
   getProfile,
   getTaggedNews
 } from "../src/contentData.server.js";
@@ -49,13 +50,24 @@ describe("file-backed content", () => {
     const slug = "06s-25th-anniversary-at-womb";
     const english = getNews("en", slug);
     const japanese = getNews("ja", slug);
+    const event = getProfile("event", slug, "en");
     const englishContent = readFileSync(join(contentDirectory, `news/${slug}/en.md`), "utf8");
     const japaneseContent = readFileSync(join(contentDirectory, `news/${slug}/ja.md`), "utf8");
 
     expect(english?.category).toBe("event");
     expect(english?.published_at).toBe("2026-11-05");
-    expect(english?.tags.map(({ slug: artistSlug }) => artistSlug)).toEqual(["dj-aki", "yellock"]);
+    expect(english?.tags.map(({ type, slug: tagSlug }) => ({ type, slug: tagSlug }))).toEqual([
+      { type: "event", slug },
+      { type: "artist", slug: "dj-aki" },
+      { type: "artist", slug: "yellock" }
+    ]);
     expect(japanese?.category).toBe("event");
+    expect(event?.name).toBe("06S 25th Anniversary at WOMB");
+    expect(event?.starts_at).toBe("2026-11-06");
+    expect(event?.timezone).toBe("Asia/Tokyo");
+    expect(event?.performers).toContain("Friction");
+    expect(event?.links[0].url).toBe("https://womb.zaiko.io/en/e/womb110626");
+    expect(getTaggedNews("event", slug, "en")).toHaveLength(1);
     expect(englishContent).toContain("Friday, November 6, 2026");
     expect(englishContent).toContain("https://womb.zaiko.io/en/e/womb110626");
     expect(englishContent).toContain("Friction");
@@ -70,13 +82,24 @@ describe("file-backed content", () => {
     const english = getNews("en", slug);
     const japanese = getNews("ja", slug);
     const chamba = getProfile("artist", "chamba", "en");
+    const event = getProfile("event", slug, "en");
     const englishContent = readFileSync(join(contentDirectory, `news/${slug}/en.md`), "utf8");
     const japaneseContent = readFileSync(join(contentDirectory, `news/${slug}/ja.md`), "utf8");
 
     expect(english?.category).toBe("event");
     expect(english?.published_at).toBe("2026-11-05");
-    expect(english?.tags.map(({ slug: artistSlug }) => artistSlug)).toEqual(["chamba"]);
-    expect(japanese?.tags.map(({ slug: artistSlug }) => artistSlug)).toEqual(["chamba"]);
+    expect(english?.tags.map(({ type, slug: tagSlug }) => ({ type, slug: tagSlug }))).toEqual([
+      { type: "event", slug },
+      { type: "artist", slug: "chamba" }
+    ]);
+    expect(japanese?.tags.map(({ type }) => type)).toEqual(["event", "artist"]);
+    expect(event?.name).toBe("Thursday Clash: UK Takeover");
+    expect(event?.starts_at).toBe("2026-11-05T22:00:00+07:00");
+    expect(event?.timezone).toBe("Asia/Ho_Chi_Minh");
+    expect(event?.location).toContain("Da Nang");
+    expect(event?.performers).toContain("CHAMBA");
+    expect(event?.links[0].url).toBe("https://likdo.asia/event/3082/");
+    expect(getTaggedNews("event", slug, "en")).toHaveLength(1);
     expect(chamba?.name).toBe("CHAMBA");
     expect(chamba?.bio).toContain("UKF label spotlight");
     expect(chamba?.sources.some(({ url }) => url === "https://ukf.com/read/label-spotlight-yamatai/")).toBe(
@@ -149,12 +172,23 @@ describe("file-backed content", () => {
   });
 
   test("lists past events with localized event links", () => {
-    const english = getPastEvents("en");
-    const japanese = getPastEvents("ja");
+    const asOf = new Date("2026-11-05T06:42:00.000Z");
+    const english = getPastEvents("en", asOf);
+    const japanese = getPastEvents("ja", asOf);
     expect(english).toHaveLength(1);
     expect(english[0].flyer).toBe("2016-far-too-loud.jpg");
     expect(english[0].url).toBe("/en/events/tokyo-bass-conference");
     expect(japanese[0].url).toBe("/events/tokyo-bass-conference");
+  });
+
+  test("lists upcoming events in start order", () => {
+    const events = getUpcomingEvents("en", new Date("2026-11-05T06:42:00.000Z"));
+    expect(events.map(({ slug }) => slug)).toEqual([
+      "bass2face-thursday-clash-chamba-da-nang",
+      "06s-25th-anniversary-at-womb"
+    ]);
+    expect(events[0].url).toBe("/en/events/bass2face-thursday-clash-chamba-da-nang");
+    expect(events[1].flyer).toBe("06s-25th-anniversary-at-womb.png");
   });
 
   test("loads every profile in both locales", () => {

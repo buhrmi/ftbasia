@@ -1,6 +1,7 @@
 <script>
   import "@fontsource/montserrat/300.css";
   import logo from "~/assets/logo.png";
+  import EventCardGrid from "~/shared/EventCardGrid.svelte";
   import NewsIndex from "~/pages/news/index.svelte";
   import PageMeta from "~/shared/PageMeta.svelte";
 
@@ -42,14 +43,20 @@
         <span aria-hidden="true">↗</span>
       </a>
     </div>
-    <div class="upcoming-events__empty">
-      <span class="upcoming-events__signal" aria-hidden="true"></span>
-      <p>
-        {japanese
-          ? "次のイベントはまだ発表されていません。続報をお待ちください。"
-          : "The next event is still under wraps. Stay tuned for the announcement."}
-      </p>
-    </div>
+    {#if data.events.length}
+      <div class="upcoming-events__list">
+        <EventCardGrid events={data.events} locale={data.locale} />
+      </div>
+    {:else}
+      <div class="upcoming-events__empty">
+        <span class="upcoming-events__signal" aria-hidden="true"></span>
+        <p>
+          {japanese
+            ? "次のイベントはまだ発表されていません。続報をお待ちください。"
+            : "The next event is still under wraps. Stay tuned for the announcement."}
+        </p>
+      </div>
+    {/if}
   </section>
 
   <section class="venue-cta" aria-labelledby="venue-cta-heading">
@@ -214,6 +221,10 @@
     border-radius: 0.65rem;
     background: linear-gradient(110deg, rgb(255 255 255 / 4%), rgb(255 255 255 / 1%));
     padding: 1rem;
+  }
+
+  .upcoming-events__list {
+    margin-top: 1.25rem;
   }
 
   .upcoming-events__signal {

@@ -4,6 +4,8 @@ description: Bass2Face and Exodus Records bring Thursday Clash to BRIX in Da Nan
 published_at: 2026-11-05
 category: event
 tags:
+  - type: event
+    slug: bass2face-thursday-clash-chamba-da-nang
   - type: artist
     slug: chamba
 ---

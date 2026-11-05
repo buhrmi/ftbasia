@@ -141,6 +141,19 @@ function localizedWork(value, locale, slug) {
 function eventStartsAt(value, slug) {
   if (value == null) return undefined;
   const startsAt = String(value);
+  const dateOnly = /^(\d{4})-(\d{2})-(\d{2})$/.exec(startsAt);
+  if (dateOnly) {
+    const [, year, month, day] = dateOnly;
+    const parsedDate = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+    if (
+      parsedDate.getUTCFullYear() !== Number(year) ||
+      parsedDate.getUTCMonth() !== Number(month) - 1 ||
+      parsedDate.getUTCDate() !== Number(day)
+    ) {
+      throw new Error(`Invalid event start date: ${slug}`);
+    }
+    return startsAt;
+  }
   if (!startsAt || Number.isNaN(Date.parse(startsAt))) {
     throw new Error(`Invalid event start time: ${slug}`);
   }
@@ -193,6 +206,7 @@ export function getProfile(type, slug, locale) {
   if (type === "event") {
     profile.kind = localizedText(data.kind, locale);
     profile.starts_at = eventStartsAt(data.starts_at, slug);
+    profile.timezone = data.timezone == null ? undefined : String(data.timezone);
     profile.description = localizedText(data.description, locale);
     profile.performers = localizedList(data.performers, locale);
     profile.work = localizedWork(data.work, locale, slug);
@@ -219,17 +233,41 @@ export function getArtistIndex(locale) {
     }));
 }
 
-export function getPastEvents(locale) {
+function isUpcomingEvent(profile, now) {
+  if (!profile?.starts_at) return false;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(profile.starts_at)) {
+    const parts = new Intl.DateTimeFormat("en", {
+      timeZone: profile.timezone ?? "UTC",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(now);
+    const localDate = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+    const today = `${localDate.year}-${localDate.month}-${localDate.day}`;
+    return profile.starts_at >= today;
+  }
+  return Date.parse(profile.starts_at) > now.getTime();
+}
+
+function eventsForLocale(locale, now, upcoming) {
   if (!LOCALES.has(locale)) throw new Error(`Unsupported locale: ${locale}`);
   return filesIn(PROFILE_TYPES.event, ".yml")
     .map((filename) => filename.replace(/\.yml$/, ""))
     .map((slug) => getProfile("event", slug, locale))
-    .filter((profile) => profile?.starts_at && Date.parse(profile.starts_at) <= Date.now())
-    .sort((a, b) => Date.parse(b.starts_at) - Date.parse(a.starts_at))
+    .filter((profile) => profile?.starts_at && isUpcomingEvent(profile, now) === upcoming)
+    .sort((a, b) => (Date.parse(a.starts_at) - Date.parse(b.starts_at)) * (upcoming ? 1 : -1))
     .map((profile) => ({
       ...profile,
       url: localizedPath(locale, `/events/${profile.slug}`)
     }));
+}
+
+export function getPastEvents(locale, now = new Date()) {
+  return eventsForLocale(locale, now, false);
+}
+
+export function getUpcomingEvents(locale, now = new Date()) {
+  return eventsForLocale(locale, now, true);
 }
 
 function parseFrontMatter(path) {

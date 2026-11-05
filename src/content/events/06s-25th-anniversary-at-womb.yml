@@ -1,0 +1,36 @@
+name: 06S 25th Anniversary at WOMB
+location:
+  en: WOMB, Shibuya, Tokyo, Japan
+  ja: WOMB（東京・渋谷）
+bio:
+  en: 06S celebrates its 25th anniversary at WOMB with Friction and a multi-floor lineup.
+  ja: 06SがFrictionを迎え、WOMBの複数フロアで25周年イベントを開催します。
+kind:
+  en: Anniversary party
+  ja: 周年記念イベント
+starts_at: "2026-11-06"
+timezone: Asia/Tokyo
+description:
+  en: The flyer lists Friction, DJ AKi, YELLOCK, KEITA and YASUKI, hosted by YUUKi MC. Additional artists play across the 1F and 4F, with a live stream announced on DJ AKi's Twitch channel.
+  ja: フライヤーではFriction、DJ AKi、YELLOCK、KEITA、YASUKIの出演が告知され、YUUKi MCがホストを務めます。1Fと4Fにも出演者がラインナップされ、DJ AKiのTwitchチャンネルでのライブ配信も予定されています。
+performers:
+  en:
+    - Friction
+    - DJ AKi
+    - YELLOCK
+    - KEITA
+    - YASUKI
+    - YUUKi MC
+  ja:
+    - Friction
+    - DJ AKi
+    - YELLOCK
+    - KEITA
+    - YASUKI
+    - YUUKi MC
+links:
+  - label: ZAIKO tickets
+    url: https://womb.zaiko.io/en/e/womb110626
+  - label: DJ AKi on Twitch
+    url: https://www.twitch.tv/djaki_06s
+flyer: 06s-25th-anniversary-at-womb.png
