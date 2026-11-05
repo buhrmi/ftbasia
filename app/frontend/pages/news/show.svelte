@@ -40,7 +40,7 @@
         <figure class="news-photo">
           <img src={news.cover_image.url} alt={news.cover_image.alt_text ?? news.title} loading="lazy" />
           {#if news.slug === "follow-the-bass-launches-in-vietnam"}
-            <figcaption><Link href={locale === "ja" ? "/artists/stefan" : "/en/artists/stefan"}>Stefan (@danangbassman)</Link></figcaption>
+            <figcaption><Link href={locale === "ja" ? "/artists/stefan" : "/en/artists/stefan"}>{japanese ? "ステファン" : "Stefan"} (@danangbassman)</Link></figcaption>
           {:else if news.cover_image.caption}
             <figcaption>{news.cover_image.caption}</figcaption>
           {/if}

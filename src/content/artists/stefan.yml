@@ -18,7 +18,7 @@ bio:
     The Bass carries that project's history forward through coverage of the
     bass music scene.
   ja: >-
-    元ウェブ開発者のStefanは現在、東京やベトナム・ダナンをはじめ各地のベース
+    元ウェブ開発者のステファンは現在、東京やベトナム・ダナンをはじめ各地のベース
     ミュージックニュースやアーティスト情報を紹介するサイト「Follow The Bass」を
     運営しています。2014年には「New Sound For Japan」を立ち上げましたが、現在は
     休止中です。Follow The Bassでは、ニュースやアーティスト紹介を通してベース
@@ -37,25 +37,25 @@ media:
     video_id: "7610814398847847687"
     alt:
       en: Stefan playing on a promenade in Da Nang
-      ja: ダナンの遊歩道でプレイするStefan
+      ja: ダナンの遊歩道でプレイするステファン
     caption:
       en: Stefan at My Khe Beach, Da Nang
-      ja: ダナンのミーケービーチにいるStefan
+      ja: ダナンのミーケービーチにいるステファン
   - kind: video
     asset: stefan_illeffects.mp4
     alt:
       en: Stefan performing in Ill Effects
-      ja: Ill EffectsでパフォーマンスするStefan
+      ja: Ill Effectsでパフォーマンスするステファン
     caption:
       en: IllEffects Rave feat. Stefan @ Yoyogi Park
-      ja: IllEffects Rave feat. Stefan @ 代々木公園
+      ja: IllEffects Rave feat. ステファン @ 代々木公園
   - kind: image
     asset: danangbassman.jpg
     width: 1600
     height: 897
     alt:
       en: Stefan in Da Nang, Vietnam, in 2026, wearing a backpack speaker and carrying a DJ controller
-      ja: 2026年、ベトナム・ダナンでスピーカーを背負い、DJコントローラーを持つStefan
+      ja: 2026年、ベトナム・ダナンでスピーカーを背負い、DJコントローラーを持つステファン
     caption:
       en: Stefan at My Khe Beach, Da Nang
-      ja: ダナンのミーケービーチにいるStefan
+      ja: ダナンのミーケービーチにいるステファン
