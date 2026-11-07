@@ -37,10 +37,10 @@
 	});
 
 	const socials = [
-		{ label: 'X', href: 'https://www.x.com/ftbasia', icon: 'i-simple-icons-x' },
+		{ label: 'X', href: 'https://www.x.com/stefanlikesdnb', icon: 'i-simple-icons-x' },
 		{
 			label: 'Instagram',
-			href: 'https://www.instagram.com/ftbasia',
+			href: 'https://www.instagram.com/stefanlikesdnb',
 			icon: 'i-simple-icons-instagram'
 		},
 		{
