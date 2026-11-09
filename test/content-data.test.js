@@ -25,9 +25,10 @@ describe("file-backed content", () => {
   test("loads news in both locales with category, links, and artist tags", () => {
     const english = getNewsForIndex("en");
     const japanese = getNewsForIndex("ja");
-    expect(english).toHaveLength(6);
-    expect(japanese).toHaveLength(6);
+    expect(english).toHaveLength(7);
+    expect(japanese).toHaveLength(7);
     expect(english.map((article) => article.category)).toEqual([
+      "feature",
       "event",
       "event",
       "announcement",
@@ -37,6 +38,9 @@ describe("file-backed content", () => {
     ]);
     expect(english.map((article) => article.slug)).toContain(
       "bass2face-thursday-clash-chamba-da-nang"
+    );
+    expect(getNews("en", "gridline-ai-generated-daw")?.title).toBe(
+      "Don't let AI generate your music, use this AI generated DAW instead"
     );
 
     const interview = getNews("en", "stefan-opens-up-after-8-years-in-tokyo");
