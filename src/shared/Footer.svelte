@@ -37,12 +37,8 @@
 	});
 
 	const socials = [
-		{ label: 'X', href: 'https://www.x.com/stefanlikesdnb', icon: 'i-simple-icons-x' },
-		{
-			label: 'Instagram',
-			href: 'https://www.instagram.com/stefanlikesdnb',
-			icon: 'i-simple-icons-instagram'
-		},
+		{ label: 'X', href: 'https://x.com/ftbasia', icon: 'i-simple-icons-x' },
+
 		{
 			label: 'YouTube',
 			href: 'https://www.youtube.com/@followthebass',
