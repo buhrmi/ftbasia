@@ -23,7 +23,6 @@
       </span>
     </a>
     <nav class="site-nav" aria-label={locale === "ja" ? "メインナビゲーション" : "Main navigation"}>
-      <a href={`${localePrefix}/artists`}>{locale === "ja" ? "アーティスト" : "Artists"}</a>
       <a href={`${localePrefix}/news`}>{locale === "ja" ? "ニュース" : "News"}</a>
       <div
         class="language-toggle"
