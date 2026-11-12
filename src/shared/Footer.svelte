@@ -50,7 +50,7 @@
 			href: 'https://www.facebook.com/profile.php?id=61591551076334',
 			icon: 'i-simple-icons-facebook'
 		},
-		{ label: 'TikTok', href: 'https://www.tiktok.com/@followthebass_', icon: 'i-simple-icons-tiktok' }
+		{ label: 'TikTok', href: 'https://www.tiktok.com/@stefanlikesdnb', icon: 'i-simple-icons-tiktok' }
 	];
 
 </script>
