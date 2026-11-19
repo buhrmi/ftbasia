@@ -37,14 +37,12 @@
 	});
 
 	const socials = [
-		{ label: 'X', href: 'https://x.com/ftbasia', icon: 'i-simple-icons-x' },
-
 		{
 			label: 'YouTube',
 			href: 'https://www.youtube.com/@followthebass',
 			icon: 'i-simple-icons-youtube'
 		},
-		{ label: 'Twitch', href: 'https://www.twitch.tv/followthebass', icon: 'i-simple-icons-twitch' },
+		{ label: 'Twitch', href: 'https://www.twitch.tv/stefanlikesdnb', icon: 'i-simple-icons-twitch' },
 		{
 			label: 'Facebook',
 			href: 'https://www.facebook.com/profile.php?id=61591551076334',
