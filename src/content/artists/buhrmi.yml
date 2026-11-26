@@ -1,6 +1,6 @@
 name:
-  en: ステファン (Stefan)
-  ja: ステファン
+  en: buhrmi
+  ja: buhrmi
 role:
   en: Artist & founder
   ja: アーティスト・創設者
@@ -12,13 +12,13 @@ tagline:
   ja: Never stop fighting for your place in the world.
 bio:
   en: >-
-    A former web developer, Stefan is now building Follow The Bass, a bass
+    Stefan, known as buhrmi, is a former web developer now building Follow The Bass, a bass
     music news and information site covering Tokyo, Da Nang, and beyond. In
     2014 he founded New Sound For Japan, a brand that is now dormant. Follow
     The Bass carries that project's history forward through coverage of the
     bass music scene.
   ja: >-
-    元ウェブ開発者のステファンは現在、東京やベトナム・ダナンをはじめ各地のベース
+    buhrmiとして知られる元ウェブ開発者のステファンは現在、東京やベトナム・ダナンをはじめ各地のベース
     ミュージックニュースやアーティスト情報を紹介するサイト「Follow The Bass」を
     運営しています。2014年には「New Sound For Japan」を立ち上げましたが、現在は
     休止中です。Follow The Bassでは、ニュースやアーティスト紹介を通してベース
@@ -36,26 +36,26 @@ media:
   - kind: tiktok
     video_id: "7610814398847847687"
     alt:
-      en: Stefan playing on a promenade in Da Nang
-      ja: ダナンの遊歩道でプレイするステファン
+      en: buhrmi playing on a promenade in Da Nang
+      ja: ダナンの遊歩道でプレイするbuhrmi
     caption:
-      en: Stefan at My Khe Beach, Da Nang
-      ja: ダナンのミーケービーチにいるステファン
+      en: buhrmi at My Khe Beach, Da Nang
+      ja: ダナンのミーケービーチにいるbuhrmi
   - kind: video
     asset: stefan_illeffects.mp4
     alt:
-      en: Stefan performing in Ill Effects
-      ja: Ill Effectsでパフォーマンスするステファン
+      en: buhrmi performing in Ill Effects
+      ja: Ill Effectsでパフォーマンスするbuhrmi
     caption:
-      en: IllEffects Rave feat. Stefan @ Yoyogi Park
-      ja: IllEffects Rave feat. ステファン @ 代々木公園
+      en: IllEffects Rave feat. buhrmi @ Yoyogi Park
+      ja: IllEffects Rave feat. buhrmi @ 代々木公園
   - kind: image
     asset: danangbassman.jpg
     width: 1600
     height: 897
     alt:
-      en: Stefan in Da Nang, Vietnam, in 2026, wearing a backpack speaker and carrying a DJ controller
-      ja: 2026年、ベトナム・ダナンでスピーカーを背負い、DJコントローラーを持つステファン
+      en: buhrmi in Da Nang, Vietnam, in 2026, wearing a backpack speaker and carrying a DJ controller
+      ja: 2026年、ベトナム・ダナンでスピーカーを背負い、DJコントローラーを持つbuhrmi
     caption:
-      en: Stefan at My Khe Beach, Da Nang
-      ja: ダナンのミーケービーチにいるステファン
+      en: buhrmi at My Khe Beach, Da Nang
+      ja: ダナンのミーケービーチにいるbuhrmi
