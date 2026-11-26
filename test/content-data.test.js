@@ -135,7 +135,7 @@ describe("file-backed content", () => {
     );
     expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
-    expect(getProfile("artist", "buhrmi", "en")?.bio).toContain("former web developer");
+    expect(getProfile("artist", "buhrmi", "en")?.bio).toContain("web developer");
     expect(stefan?.slug).toBe("buhrmi");
     expect(stefanEnglish?.slug).toBe("buhrmi");
     expect(existsSync(join(contentDirectory, "artists/buhrmi.jpg"))).toBe(true);
@@ -169,6 +169,23 @@ describe("file-backed content", () => {
     expect(getProfile("artist", "stefan", "en")).toBeUndefined();
   });
 
+  test("describes buhrmi's current work and artistic restart", () => {
+    const english = getProfile("artist", "buhrmi", "en").bio;
+    const japanese = getProfile("artist", "buhrmi", "ja").bio;
+    expect(english).toContain("known as Stefan in Japan");
+    expect(english).toContain("web developer reimagining himself");
+    expect(english).toContain("Da Nang");
+    expect(japanese).toContain("日本ではステファンの名前で知られるbuhrmi");
+    expect(japanese).toContain("ウェブ開発者として働きながら");
+    expect(japanese).toContain("ダナン");
+    for (const bio of [english, japanese]) {
+      expect(bio).toContain("Twitch");
+      expect(bio).toContain("YouTube");
+      expect(bio).not.toContain("New Sound For Japan");
+      expect(bio).not.toContain("Follow The Bass");
+    }
+  });
+
   test("keeps Stefan's expanded interview details in the news article", () => {
     const english = readFileSync(
       join(contentDirectory, "news/stefan-opens-up-after-8-years-in-tokyo/en.md"),
@@ -183,7 +200,7 @@ describe("file-backed content", () => {
     expect(english).toContain("live on Twitch");
     expect(english).toContain("known as Stefan and performed under that name");
     expect(english).toContain("After leaving Japan, he is making a fresh start as **buhrmi**");
-    expect(english).toContain("his web developer days and his GitHub username");
+    expect(english).toContain("his earlier days as a web developer and his GitHub username");
     expect(english).toContain("**Stefan:**");
     expect(english).toContain("/en/artists/buhrmi");
     expect(japanese).toContain("New Sound For Japan");
@@ -191,7 +208,7 @@ describe("file-backed content", () => {
     expect(japanese).toContain("Tokyo Bass Music");
     expect(japanese).toContain("Twitchでライブ配信");
     expect(japanese).toContain("日本では「ステファン」の名前で知られ、その名で出演してきました");
-    expect(japanese).toContain("日本を離れた今、ウェブ開発者時代へのオマージュ");
+    expect(japanese).toContain("日本を離れた今、ウェブ開発者として活動を始めた頃へのオマージュ");
     expect(japanese).toContain("GitHubで使っていた名前**buhrmi**をアーティスト名に選び");
     expect(japanese).toContain("**ステファン:**");
     expect(japanese).toContain("/artists/buhrmi");

@@ -13,7 +13,7 @@ In 2014, Stefan founded **New Sound For Japan**, a project that brought internat
 
 We spoke with Stefan about his early work, what he is bringing into this new chapter, and the kind of music community he hopes to build.
 
-In Japan, he is known as Stefan and performed under that name. After leaving Japan, he is making a fresh start as **buhrmi**, an artist name that pays homage to his web developer days and his GitHub username. For more on his profile and work, see his [artist page](/en/artists/buhrmi).
+In Japan, he is known as Stefan and performed under that name. After leaving Japan, he is making a fresh start as **buhrmi**, an artist name that pays homage to his earlier days as a web developer and his GitHub username. For more on his profile and work, see his [artist page](/en/artists/buhrmi).
 
 ---
 
