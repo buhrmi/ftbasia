@@ -45,7 +45,7 @@ describe("file-backed content", () => {
 
     const interview = getNews("en", "stefan-opens-up-after-8-years-in-tokyo");
     expect(interview?.tags.map(({ type, slug }) => ({ type, slug }))).toEqual([
-      { type: "artist", slug: "buhrmi" }
+      { type: "artist", slug: "stefan" }
     ]);
     expect(interview?.url).toBe("/en/news/stefan-opens-up-after-8-years-in-tokyo");
   });
@@ -118,16 +118,13 @@ describe("file-backed content", () => {
   });
 
   test("localizes artist profiles and media", () => {
-    const stefan = getProfile("artist", "buhrmi", "ja");
-    const stefanEnglish = getProfile("artist", "buhrmi", "en");
-    expect(stefan?.name).toBe("buhrmi");
-    expect(stefanEnglish?.name).toBe("buhrmi");
+    const stefan = getProfile("artist", "stefan", "ja");
+    const stefanEnglish = getProfile("artist", "stefan", "en");
+    expect(stefan?.name).toBe("Stefan");
+    expect(stefanEnglish?.name).toBe("Stefan");
     expect(stefan?.role).toBe("アーティスト・創設者");
     expect(stefan?.bio).toContain("ウェブ開発者");
-    expect(stefan?.bio).not.toContain("Stefan");
-    expect(stefan?.media.some(({ alt, caption }) => `${alt} ${caption ?? ""}`.includes("Stefan"))).toBe(
-      false
-    );
+    expect(stefan?.media.every(({ alt }) => alt.includes("Stefan"))).toBe(true);
     expect(stefan?.links.some(({ url }) => url === "https://github.com/buhrmi")).toBe(true);
     expect(stefan?.links.some(({ url }) => url === "https://x.com/stefankatakana")).toBe(true);
     expect(stefan?.links.some(({ url }) => url === "https://www.instagram.com/stefankatakana")).toBe(
@@ -135,10 +132,10 @@ describe("file-backed content", () => {
     );
     expect(stefan?.interview).toEqual([]);
     expect(stefan?.media.map(({ kind }) => kind)).toEqual(["tiktok", "video", "image"]);
-    expect(getProfile("artist", "buhrmi", "en")?.bio).toContain("web developer");
-    expect(stefan?.slug).toBe("buhrmi");
-    expect(stefanEnglish?.slug).toBe("buhrmi");
-    expect(existsSync(join(contentDirectory, "artists/buhrmi.jpg"))).toBe(true);
+    expect(getProfile("artist", "stefan", "en")?.bio).toContain("web developer");
+    expect(stefan?.slug).toBe("stefan");
+    expect(stefanEnglish?.slug).toBe("stefan");
+    expect(existsSync(join(contentDirectory, "artists/stefan.jpg"))).toBe(true);
     expect(getProfile("artist", "danangbassman", "en")).toBeUndefined();
     expect(getProfile("artist", "allen-mock", "en")?.links[0].url).toBe(
       "https://allenmock.bandcamp.com/"
@@ -149,35 +146,36 @@ describe("file-backed content", () => {
     const english = getArtistIndex("en");
     const japanese = getArtistIndex("ja");
     expect(english).toHaveLength(6);
-    expect(english.map(({ slug }) => slug)).toContain("buhrmi");
-    expect(english.find(({ slug }) => slug === "buhrmi")?.url).toBe(
-      "/en/artists/buhrmi"
+    expect(english.map(({ slug }) => slug)).toContain("stefan");
+    expect(english.find(({ slug }) => slug === "stefan")?.url).toBe(
+      "/en/artists/stefan"
     );
-    expect(japanese.find(({ slug }) => slug === "buhrmi")?.url).toBe(
-      "/artists/buhrmi"
+    expect(japanese.find(({ slug }) => slug === "stefan")?.url).toBe(
+      "/artists/stefan"
     );
   });
 
-  test("uses buhrmi as the artist name in both locales", () => {
+  test("uses Stefan as the artist name in both locales", () => {
     for (const locale of ["ja", "en"]) {
-      const profile = getProfile("artist", "buhrmi", locale);
-      expect(profile?.name).toBe("buhrmi");
-      expect(profile?.media.every(({ alt }) => alt.includes("buhrmi"))).toBe(true);
-      expect(getTaggedNews("artist", "buhrmi", locale)).toHaveLength(1);
+      const profile = getProfile("artist", "stefan", locale);
+      expect(profile?.name).toBe("Stefan");
+      expect(profile?.media.every(({ alt }) => alt.includes("Stefan"))).toBe(true);
+      expect(getTaggedNews("artist", "stefan", locale)).toHaveLength(1);
     }
-    expect(existsSync(join(contentDirectory, "artists/buhrmi.jpg"))).toBe(true);
-    expect(getProfile("artist", "stefan", "en")).toBeUndefined();
+    expect(existsSync(join(contentDirectory, "artists/stefan.jpg"))).toBe(true);
+    expect(getProfile("artist", "buhrmi", "en")).toBeUndefined();
   });
 
-  test("describes buhrmi's current work and artistic restart", () => {
-    const english = getProfile("artist", "buhrmi", "en").bio;
-    const japanese = getProfile("artist", "buhrmi", "ja").bio;
-    expect(english).toContain("known as Stefan in Japan");
+  test("describes Stefan's current work and artistic restart", () => {
+    const english = getProfile("artist", "stefan", "en").bio;
+    const japanese = getProfile("artist", "stefan", "ja").bio;
     expect(english).toContain("web developer reimagining himself");
     expect(english).toContain("Da Nang");
-    expect(japanese).toContain("日本ではステファンの名前で知られるbuhrmi");
+    expect(english).toContain("streaming on Twitch and YouTube live from My Khe beach");
+    expect(japanese).toContain("Stefan");
     expect(japanese).toContain("ウェブ開発者として働きながら");
     expect(japanese).toContain("ダナン");
+    expect(japanese).toContain("ミーケービーチから");
     for (const bio of [english, japanese]) {
       expect(bio).toContain("Twitch");
       expect(bio).toContain("YouTube");
@@ -198,20 +196,16 @@ describe("file-backed content", () => {
     expect(english).toContain("New Sound For Japan");
     expect(english).toContain("Tokyo Bass Music");
     expect(english).toContain("live on Twitch");
-    expect(english).toContain("known as Stefan and performed under that name");
-    expect(english).toContain("After leaving Japan, he is making a fresh start as **buhrmi**");
-    expect(english).toContain("his earlier days as a web developer and his GitHub username");
+    expect(english).not.toContain("buhrmi");
     expect(english).toContain("**Stefan:**");
-    expect(english).toContain("/en/artists/buhrmi");
+    expect(english).toContain("/en/artists/stefan");
     expect(japanese).toContain("New Sound For Japan");
     expect(japanese).not.toContain("Stefan");
     expect(japanese).toContain("Tokyo Bass Music");
     expect(japanese).toContain("Twitchでライブ配信");
-    expect(japanese).toContain("日本では「ステファン」の名前で知られ、その名で出演してきました");
-    expect(japanese).toContain("日本を離れた今、ウェブ開発者として活動を始めた頃へのオマージュ");
-    expect(japanese).toContain("GitHubで使っていた名前**buhrmi**をアーティスト名に選び");
+    expect(japanese).not.toContain("buhrmi");
     expect(japanese).toContain("**ステファン:**");
-    expect(japanese).toContain("/artists/buhrmi");
+    expect(japanese).toContain("/artists/stefan");
   });
 
   test("includes event details and tagged news on the event profile", () => {
@@ -222,8 +216,8 @@ describe("file-backed content", () => {
     expect(event?.work[0].title).toBe("ブッキング");
     expect(event?.flyer).toBe("2016-far-too-loud.jpg");
     expect(event?.links[0].url).toBe("https://www.facebook.com/TokyoBassMusic/");
-    expect(getTaggedNews("artist", "buhrmi", "en")).toHaveLength(1);
-    expect(getTaggedNews("artist", "buhrmi", "ja")).toHaveLength(1);
+    expect(getTaggedNews("artist", "stefan", "en")).toHaveLength(1);
+    expect(getTaggedNews("artist", "stefan", "ja")).toHaveLength(1);
     expect(getProfile("event", "tokyo-bass-conference", "en")?.description).toContain(
       "booking process"
     );

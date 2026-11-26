@@ -2,8 +2,8 @@ import { error, redirect } from "@sveltejs/kit";
 import { getProfile, getTaggedNews, pageMeta } from "~/contentData.server.js";
 
 export function load({ params, url }) {
-  if (params.slug === "stefan") {
-    redirect(308, `${params.locale ? `/${params.locale}` : ""}/artists/buhrmi${url.search}`);
+  if (params.slug === "buhrmi") {
+    redirect(308, `${params.locale ? `/${params.locale}` : ""}/artists/stefan${url.search}`);
   }
   const locale = params.locale ?? "ja";
   const profile = getProfile("artist", params.slug, locale);
